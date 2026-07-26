@@ -248,7 +248,7 @@ export function B1GPricing() {
               Full plan details, connection rules and current availability should be reviewed before placing an order.
             </p>
 
-            <Link href="/subscription-plan/#compare-plans" className="shrink-0 w-full md:w-auto">
+            <Link href="/b1g-iptv-subscription/#compare-plans" className="shrink-0 w-full md:w-auto">
               <Button
                 variant="outline"
                 size="lg"

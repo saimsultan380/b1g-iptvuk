@@ -13,7 +13,7 @@ import { B1GFooter } from "@/components/sections/footer";
 import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
 import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
 
-const page = SITE_PAGES.find((p) => p.path === "/installation-guide/")!;
+const page = SITE_PAGES.find((p) => p.path === "/b1g-player-installation-guide/")!;
 
 export const metadata = buildPageMetadata({
   title: page.title,

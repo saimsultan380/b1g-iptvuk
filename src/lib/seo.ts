@@ -11,6 +11,15 @@ export const SITE_TITLE =
 export const SITE_DESCRIPTION =
   "B1G Player is the official app for B1G IPTV subscriptions. Access live TV, sports, movies and series on supported Firestick and Android devices.";
 
+/** Canonical route paths (always trailing slash except homepage `/`). */
+export const ROUTES = {
+  home: "/",
+  subscription: "/b1g-iptv-subscription/",
+  installation: "/b1g-player-installation-guide/",
+  reseller: "/b1g-player-reseller/",
+  contact: "/contact/",
+} as const;
+
 /**
  * Prefer explicit env in preview/staging; production always resolves to non-www.
  * Strips trailing slash and any accidental www. prefix from the origin.
@@ -133,59 +142,59 @@ export function buildPageMetadata({
 /** Indexed marketing routes used by sitemap + internal SEO checks. */
 export const SITE_PAGES = [
   {
-    path: "/",
+    path: ROUTES.home,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     changeFrequency: "weekly" as const,
     priority: 1,
-    breadcrumbs: [{ name: "Home", path: "/" }],
+    breadcrumbs: [{ name: "Home", path: ROUTES.home }],
   },
   {
-    path: "/subscription-plan/",
+    path: ROUTES.subscription,
     title: "B1G Player Subscription UK – B1G IPTV Plans & Trial",
     description:
       "Compare B1G Player plans with a B1G IPTV subscription. Choose 1, 3, 6 or 12 months, get instant activation and receive setup support in the UK.",
     changeFrequency: "weekly" as const,
     priority: 0.9,
     breadcrumbs: [
-      { name: "Home", path: "/" },
-      { name: "Subscription Plans", path: "/subscription-plan/" },
+      { name: "Home", path: ROUTES.home },
+      { name: "Subscription Plans", path: ROUTES.subscription },
     ],
   },
   {
-    path: "/installation-guide/",
+    path: ROUTES.installation,
     title: "B1G Player Installation Guide – Firestick & Android",
     description:
       "Install B1G Player on Firestick, Android TV, phones and tablets using Downloader code 4172090, then sign in with your B1G IPTV subscription details.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
     breadcrumbs: [
-      { name: "Home", path: "/" },
-      { name: "Installation Guide", path: "/installation-guide/" },
+      { name: "Home", path: ROUTES.home },
+      { name: "Installation Guide", path: ROUTES.installation },
     ],
   },
   {
-    path: "/reseller-panel/",
+    path: ROUTES.reseller,
     title: "B1G Player Reseller UK – Panel, Credits & IPTV Plans",
     description:
       "Join the B1G Player reseller programme in the UK. Manage B1G IPTV subscriptions, customer accounts and credits through one organised reseller panel.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
     breadcrumbs: [
-      { name: "Home", path: "/" },
-      { name: "Reseller Panel", path: "/reseller-panel/" },
+      { name: "Home", path: ROUTES.home },
+      { name: "Reseller Panel", path: ROUTES.reseller },
     ],
   },
   {
-    path: "/contact/",
+    path: ROUTES.contact,
     title: "Contact B1G Player – Free Trial, Setup & Subscription Help",
     description:
       "Contact B1G Player for a free trial, B1G IPTV subscription advice, Firestick and Android setup help, renewals and reseller enquiries in the UK.",
     changeFrequency: "monthly" as const,
     priority: 0.7,
     breadcrumbs: [
-      { name: "Home", path: "/" },
-      { name: "Contact Us", path: "/contact/" },
+      { name: "Home", path: ROUTES.home },
+      { name: "Contact Us", path: ROUTES.contact },
     ],
   },
 ] as const;

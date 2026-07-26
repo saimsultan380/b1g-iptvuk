@@ -36,7 +36,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/subscription-plan/"
+                  href="/b1g-iptv-subscription/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Subscription Plans
@@ -44,7 +44,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/installation-guide/"
+                  href="/b1g-player-installation-guide/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Installation Guide
@@ -77,7 +77,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/subscription-plan/#free-trial"
+                  href="/b1g-iptv-subscription/#free-trial"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Request a Free Trial
@@ -85,7 +85,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/reseller-panel/"
+                  href="/b1g-player-reseller/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Reseller Panel

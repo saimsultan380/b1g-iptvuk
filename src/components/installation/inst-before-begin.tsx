@@ -81,7 +81,7 @@ export function InstBeforeBegin() {
                 <p className="text-xs sm:text-sm text-slate-500 font-semibold mb-4 leading-relaxed">
                   Have you not selected a subscription package yet?
                 </p>
-                <Link href="/subscription-plan/">
+                <Link href="/b1g-iptv-subscription/">
                   <Button
                     variant="primary"
                     className="w-full sm:w-auto rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 py-3 text-xs sm:text-sm font-semibold"

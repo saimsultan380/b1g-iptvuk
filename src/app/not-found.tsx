@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 
 const helpfulLinks = [
   { name: "Home", href: "/" },
-  { name: "Subscription Plans", href: "/subscription-plan/" },
-  { name: "Installation Guide", href: "/installation-guide/" },
-  { name: "Reseller Panel", href: "/reseller-panel/" },
+  { name: "Subscription Plans", href: "/b1g-iptv-subscription/" },
+  { name: "Installation Guide", href: "/b1g-player-installation-guide/" },
+  { name: "Reseller Panel", href: "/b1g-player-reseller/" },
   { name: "Contact Us", href: "/contact/" },
 ];
 

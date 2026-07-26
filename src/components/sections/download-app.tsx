@@ -185,7 +185,7 @@ export function DownloadApp() {
               Need detailed setup assistance? Visit our full installation guide for step-by-step instructions with device screenshots.
             </p>
 
-            <Link href="/installation-guide/" className="shrink-0 w-full md:w-auto">
+            <Link href="/b1g-player-installation-guide/" className="shrink-0 w-full md:w-auto">
               <Button
                 variant="primary"
                 size="lg"

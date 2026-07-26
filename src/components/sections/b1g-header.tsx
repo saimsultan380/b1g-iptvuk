@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Installation Guide", href: "/installation-guide/" },
-  { name: "Subscription Plans", href: "/subscription-plan/" },
-  { name: "Reseller Panel", href: "/reseller-panel/" },
+  { name: "Installation Guide", href: "/b1g-player-installation-guide/" },
+  { name: "Subscription Plans", href: "/b1g-iptv-subscription/" },
+  { name: "Reseller Panel", href: "/b1g-player-reseller/" },
   { name: "Contact Us", href: "/contact/" },
 ];
 
@@ -81,7 +81,7 @@ export function B1GHeader() {
 
         {/* 3) RIGHT: Primary CTA “Get Started” (~44px tall, rounded-[12px]) */}
         <div className="flex items-center shrink-0">
-          <Link href="/subscription-plan/">
+          <Link href="/b1g-iptv-subscription/">
             <Button
               variant="primary"
               className="h-[44px] px-6 rounded-[12px] text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white whitespace-nowrap"
@@ -157,7 +157,7 @@ export function B1GHeader() {
                   </nav>
 
                   <div className="pt-2">
-                    <Link href="/subscription-plan/" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/b1g-iptv-subscription/" onClick={() => setMobileMenuOpen(false)}>
                       <Button
                         variant="primary"
                         className="w-full h-[48px] rounded-[12px] text-base font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"

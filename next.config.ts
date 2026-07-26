@@ -15,35 +15,58 @@ const nextConfig: NextConfig = {
         destination: `${CANONICAL_ORIGIN}/:path*`,
         permanent: true,
       },
-      // Legacy / broken paths → canonical pages (prevent soft-404 duplicates)
+
+      // Old route slugs → client-approved canonical URLs
+      {
+        source: "/subscription-plan",
+        destination: "/b1g-iptv-subscription/",
+        permanent: true,
+      },
+      {
+        source: "/subscription-plan/",
+        destination: "/b1g-iptv-subscription/",
+        permanent: true,
+      },
+      {
+        source: "/installation-guide",
+        destination: "/b1g-player-installation-guide/",
+        permanent: true,
+      },
+      {
+        source: "/installation-guide/",
+        destination: "/b1g-player-installation-guide/",
+        permanent: true,
+      },
+      {
+        source: "/reseller-panel",
+        destination: "/b1g-player-reseller/",
+        permanent: true,
+      },
+      {
+        source: "/reseller-panel/",
+        destination: "/b1g-player-reseller/",
+        permanent: true,
+      },
+
+      // Legacy / broken paths → canonical pages
       {
         source: "/setup-instructions",
-        destination: "/installation-guide/",
+        destination: "/b1g-player-installation-guide/",
         permanent: true,
       },
       {
         source: "/setup-instructions/",
-        destination: "/installation-guide/",
+        destination: "/b1g-player-installation-guide/",
         permanent: true,
       },
       {
         source: "/compare-plans",
-        destination: "/subscription-plan/",
+        destination: "/b1g-iptv-subscription/",
         permanent: true,
       },
       {
         source: "/compare-plans/",
-        destination: "/subscription-plan/",
-        permanent: true,
-      },
-      {
-        source: "/b1g-iptv-subscription",
-        destination: "/subscription-plan/",
-        permanent: true,
-      },
-      {
-        source: "/b1g-iptv-subscription/",
-        destination: "/subscription-plan/",
+        destination: "/b1g-iptv-subscription/",
         permanent: true,
       },
     ];

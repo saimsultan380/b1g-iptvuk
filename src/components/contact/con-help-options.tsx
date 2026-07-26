@@ -147,7 +147,7 @@ export function ConHelpOptions() {
                 </ul>
               </div>
 
-              <Link href="/subscription-plan/" className="w-full">
+              <Link href="/b1g-iptv-subscription/" className="w-full">
                 <Button
                   variant="outline"
                   className="w-full rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] py-3 text-xs sm:text-sm font-semibold hover:bg-red-50"
@@ -186,7 +186,7 @@ export function ConHelpOptions() {
                 </ul>
               </div>
 
-              <Link href="/installation-guide/" className="w-full">
+              <Link href="/b1g-player-installation-guide/" className="w-full">
                 <Button
                   variant="outline"
                   className="w-full rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] py-3 text-xs sm:text-sm font-semibold hover:bg-red-50"
