@@ -115,8 +115,8 @@ export function SubPricing() {
                   </div>
 
                   {/* Plan Price */}
-                  <div className="flex items-baseline gap-1 mb-3">
-                    <span className="text-3xl font-extrabold text-[#12141F] tracking-tight font-heading">
+                  <div className="flex items-baseline gap-1.5 mb-3">
+                    <span className="font-heading text-[42px] leading-none sm:text-3xl font-extrabold text-[#12141F] tracking-tight">
                       {plan.price}
                     </span>
                   </div>
@@ -147,15 +147,11 @@ export function SubPricing() {
                   </ul>
                 </div>
 
-                {/* CTA Button */}
+                {/* CTA Button — red on all plans */}
                 <Button
-                  variant={plan.isRecommended ? "primary" : "outline"}
+                  variant="primary"
                   size="lg"
-                  className={`w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
-                    plan.isRecommended
-                      ? "bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none"
-                      : "border-2 border-[#E01E26] bg-white text-[#12141F] hover:bg-red-50"
-                  }`}
+                  className="w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none border-0"
                 >
                   {plan.ctaText}
                 </Button>

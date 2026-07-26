@@ -35,8 +35,8 @@ export function ConHero() {
               </div>
 
               {/* Body Copy */}
-              <FadeIn delay={0} duration={0.4}>
-                <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-xs sm:text-sm lg:text-base text-[#4A4A4A] leading-relaxed">
+              <FadeIn delay={0.22} duration={0.45} yOffset={14}>
+                <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-xs sm:text-sm lg:text-base text-black leading-relaxed">
                   <p>
                     Contact the B1G Player team when you want to request a free trial, compare subscription options, install the app, renew an account or apply for reseller access.
                   </p>
@@ -144,8 +144,8 @@ export function ConHero() {
               />
             </div>
 
-            <FadeIn delay={0} duration={0.35} className="w-full">
-              <div className="mt-4 space-y-3 text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
+            <FadeIn delay={0.22} duration={0.45} yOffset={14} className="w-full">
+              <div className="mt-4 space-y-3 text-xs sm:text-sm text-black leading-relaxed">
                 <p>
                   Contact the B1G Player team when you want to request a free trial, compare subscription options, install the app, renew an account or apply for reseller access.
                 </p>

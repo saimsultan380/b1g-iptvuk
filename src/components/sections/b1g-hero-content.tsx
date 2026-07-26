@@ -2,6 +2,7 @@
 
 import React from "react";
 import { MaskReveal } from "@/components/animation/mask-reveal";
+import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Tv, Calendar } from "lucide-react";
 
@@ -28,24 +29,26 @@ export function B1GHeroContent({ showFullBodyCopy = true }: B1GHeroContentProps)
         />
       </div>
 
-      {/* Body copy — visible immediately in hero (no scroll wait) */}
-      <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-xs sm:text-sm lg:text-base text-[#4A4A4A] leading-relaxed">
-        <p>
-          Enjoy live television, sports, movies and television series through B1G Player, the official application supplied with every active B1G IPTV subscription.
-        </p>
+      {/* Body copy — fade/slide in on load */}
+      <FadeIn delay={0.22} duration={0.45} yOffset={14} className="w-[90%] sm:w-full sm:max-w-xl lg:max-w-[34rem]">
+        <div className="mt-3 sm:mt-6 space-y-2 sm:space-y-4 text-xs sm:text-sm lg:text-base text-black leading-[1.5] sm:leading-relaxed">
+          <p>
+            Enjoy live television, sports, movies and television series through B1G Player, the official application supplied with every active B1G IPTV subscription.
+          </p>
 
-        <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
-          The app is designed for compatible Android Smart TVs, Android TV boxes, Amazon Firestick, Fire TV, Android smartphones and tablets. Once your account has been activated, enter the supplied username, password and server information to access the available entertainment through one organised interface.
-        </p>
+          <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
+            The app is designed for compatible Android Smart TVs, Android TV boxes, Amazon Firestick, Fire TV, Android smartphones and tablets. Once your account has been activated, enter the supplied username, password and server information to access the available entertainment through one organised interface.
+          </p>
 
-        <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
-          Every active plan includes secure account access, the official app, fast activation and support for customers across the United Kingdom.
-        </p>
+          <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
+            Every active plan includes secure account access, the official app, fast activation and support for customers across the United Kingdom.
+          </p>
 
-        <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
-          Choose a subscription that suits your viewing habits, request a free trial where available or follow the installation guide to set up the app on your preferred device.
-        </p>
-      </div>
+          <p className={showFullBodyCopy ? "block" : "hidden sm:block"}>
+            Choose a subscription that suits your viewing habits, request a free trial where available or follow the installation guide to set up the app on your preferred device.
+          </p>
+        </div>
+      </FadeIn>
     </div>
   );
 }

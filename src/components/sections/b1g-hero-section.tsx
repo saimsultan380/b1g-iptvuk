@@ -29,12 +29,12 @@ export function B1GHeroSection() {
         </div>
 
         {/* MOBILE */}
-        <div className="flex lg:hidden flex-col items-center gap-6 text-left">
+        <div className="flex lg:hidden flex-col items-center gap-5 text-left">
           <div className="w-full">
             <B1GHeroContent showFullBodyCopy={true} />
           </div>
 
-          <div className="w-full my-2">
+          <div className="w-full my-1">
             <B1GHeroMockup />
           </div>
 

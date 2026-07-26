@@ -15,6 +15,10 @@ const navLinks = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+/** Shared frosted-glass surface — desktop header + mobile navbar use the exact same look */
+const glassSurface =
+  "border border-white/40 bg-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/55";
+
 export function B1GHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -44,7 +48,9 @@ export function B1GHeader() {
         DESKTOP HEADER CONTAINER 
         Floating Bar (~84px tall, rounded-[12px], frosted glass)
       */}
-      <div className="hidden lg:flex h-[84px] w-full items-center justify-between rounded-[12px] border border-slate-200 bg-white/90 px-8 backdrop-blur-md overflow-hidden">
+      <div
+        className={`hidden lg:flex h-[84px] w-full items-center justify-between rounded-[12px] px-8 overflow-hidden ${glassSurface}`}
+      >
         
         {/* 1) LEFT: Logo image only (square ~64x64, object-contain) */}
         <Link href="/" className="flex items-center shrink-0 group">
@@ -61,7 +67,7 @@ export function B1GHeader() {
         </Link>
 
         {/* 2) CENTER: Horizontal Nav (5 text links in 1 row, even ~32px gaps) */}
-        <nav className="flex items-center gap-8 text-[15px] font-semibold text-slate-700">
+        <nav className="flex items-center gap-8 text-base font-semibold text-slate-700">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -90,7 +96,9 @@ export function B1GHeader() {
         Open menu overlays content via absolute positioning (no shadow).
       */}
       <div className="relative lg:hidden w-full h-[64px]">
-        <div className="absolute top-0 left-0 right-0 z-50 flex flex-col w-full rounded-[12px] border border-slate-200 bg-white/95 backdrop-blur-lg overflow-hidden">
+        <div
+          className={`absolute top-0 left-0 right-0 z-50 flex flex-col w-full rounded-[12px] overflow-hidden ${glassSurface}`}
+        >
           {/* Collapsed Top Bar (~64px tall) */}
           <div className="flex h-[64px] items-center justify-between px-5 shrink-0">
             <Link href="/" className="flex items-center group">
@@ -121,7 +129,7 @@ export function B1GHeader() {
             </button>
           </div>
 
-          {/* Overlay panel — does not affect document flow / hero position */}
+          {/* Overlay panel — frosted glass, does not affect document flow / hero position */}
           <AnimatePresence initial={false}>
             {mobileMenuOpen && (
               <motion.div
@@ -130,7 +138,7 @@ export function B1GHeader() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="overflow-hidden border-t border-slate-100 bg-white/98"
+                className="overflow-hidden border-t border-white/40 bg-transparent"
               >
                 <div className="p-5 flex flex-col gap-5">
                   <nav className="flex flex-col gap-3.5">
@@ -139,7 +147,7 @@ export function B1GHeader() {
                         key={link.name}
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="text-base font-semibold text-slate-800 py-3 border-b border-slate-100"
+                        className="text-[17px] font-semibold text-slate-800 py-3 border-b border-white/40"
                       >
                         {link.name}
                       </Link>

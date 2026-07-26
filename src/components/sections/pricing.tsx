@@ -202,13 +202,13 @@ export function B1GPricing() {
                   {/* Price */}
                   <div className="flex items-baseline mb-6">
                     <span
-                      className={`text-4xl font-extrabold tracking-tight ${
+                      className={`font-heading text-[42px] leading-none sm:text-4xl font-extrabold tracking-tight ${
                         plan.recommended ? "text-[#E01E26]" : "text-[#12141F]"
                       }`}
                     >
                       {plan.price}
                     </span>
-                    <span className="text-xs font-semibold text-slate-400 ml-1">
+                    <span className="font-heading text-[10px] sm:text-[11px] font-semibold text-slate-400 ml-1.5">
                       {plan.period}
                     </span>
                   </div>
@@ -226,15 +226,11 @@ export function B1GPricing() {
                   </ul>
                 </div>
 
-                {/* Card Button / Action */}
+                {/* Card Button / Action — red on all plans */}
                 <div className="mt-auto">
                   <Button
-                    variant={plan.recommended ? "primary" : "outline"}
-                    className={`w-full justify-between rounded-[12px] font-bold text-xs py-3 px-4 flex items-center transition-all ${
-                      plan.recommended
-                        ? "bg-[#E01E26] hover:bg-[#B5121A] text-white"
-                        : "bg-[#F8F9FA] hover:bg-slate-100 border border-slate-200 text-[#12141F]"
-                    }`}
+                    variant="primary"
+                    className="w-full justify-between rounded-[12px] font-bold text-xs py-3 px-4 flex items-center bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 border-0"
                   >
                     <span>{plan.ctaText}</span>
                     <ArrowUpRight className="h-4 w-4 shrink-0 stroke-[2.5]" />
