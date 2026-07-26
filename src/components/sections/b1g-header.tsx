@@ -67,7 +67,7 @@ export function B1GHeader() {
         </Link>
 
         {/* 2) CENTER: Horizontal Nav (5 text links in 1 row, even ~32px gaps) */}
-        <nav className="flex items-center gap-8 text-base font-semibold text-slate-700">
+        <nav className="flex items-center gap-8 text-[15px] font-semibold text-slate-700">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -147,7 +147,7 @@ export function B1GHeader() {
                         key={link.name}
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="text-[17px] font-semibold text-slate-800 py-3 border-b border-white/40"
+                        className="text-base font-semibold text-slate-800 py-3 border-b border-white/40"
                       >
                         {link.name}
                       </Link>
