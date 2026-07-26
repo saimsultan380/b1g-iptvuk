@@ -130,7 +130,7 @@ export function SubAppAccess() {
 
             {/* Internal Guide Link button */}
             <div className="border-t border-slate-100 pt-6 mt-6">
-              <Link href="/installation-guide">
+              <Link href="/installation-guide/">
                 <Button
                   variant="primary"
                   className="w-full sm:w-auto rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 py-3 text-xs sm:text-sm font-semibold"

@@ -221,7 +221,7 @@ export function CompatibleDevices() {
               Access the guide below to review configuration tutorials and links for installing the relevant players.
             </p>
 
-            <Link href="/setup-instructions" className="shrink-0 w-full md:w-auto">
+            <Link href="/installation-guide/" className="shrink-0 w-full md:w-auto">
               <Button
                 variant="primary"
                 size="lg"

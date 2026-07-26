@@ -66,7 +66,7 @@ export function ConHero() {
                 </Link>
 
                 {/* Secondary CTA */}
-                <Link href="/b1g-iptv-subscription" className="flex-1 sm:flex-initial">
+                <Link href="/subscription-plan/" className="flex-1 sm:flex-initial">
                   <Button
                     variant="outline"
                     size="lg"
@@ -178,7 +178,7 @@ export function ConHero() {
                 </Button>
               </Link>
 
-              <Link href="/b1g-iptv-subscription" className="w-full">
+              <Link href="/subscription-plan/" className="w-full">
                 <Button
                   variant="outline"
                   size="lg"

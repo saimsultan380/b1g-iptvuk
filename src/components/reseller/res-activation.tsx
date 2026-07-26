@@ -96,7 +96,7 @@ export function ResActivation() {
             <p className="text-xs sm:text-sm text-[#4A4A4A] font-semibold leading-relaxed">
               Would you like to review customer plans before setting up reseller packages?
             </p>
-            <Link href="/b1g-iptv-subscription" className="shrink-0 w-full sm:w-auto">
+            <Link href="/subscription-plan/" className="shrink-0 w-full sm:w-auto">
               <Button
                 variant="primary"
                 className="w-full sm:w-auto rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 py-3 text-xs sm:text-sm font-semibold"

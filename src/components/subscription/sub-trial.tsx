@@ -71,7 +71,7 @@ export function SubTrial() {
           </div>
 
           <div className="shrink-0 w-full lg:w-auto">
-            <Link href="/contact" className="w-full lg:w-auto">
+            <Link href="/contact/" className="w-full lg:w-auto">
               <Button
                 variant="primary"
                 size="lg"

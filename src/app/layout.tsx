@@ -1,24 +1,25 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ScrollReveal } from "@/components/animation/scroll-reveal";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  absoluteUrl,
+  getSiteOrigin,
+} from "@/lib/seo";
 
-const siteName = "B1G Player";
-const siteTitle = "B1G Player – Official IPTV App & B1G IPTV Subscription";
-const siteDescription =
-  "B1G Player is the official app for B1G IPTV subscriptions. Access live TV, sports, movies and series on supported Firestick and Android devices.";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+const siteOrigin = getSiteOrigin();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(`${siteOrigin}/`),
   title: {
-    default: siteTitle,
-    template: `%s | ${siteName}`,
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: siteDescription,
-  applicationName: siteName,
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
     "B1G Player",
     "B1G IPTV",
@@ -27,9 +28,9 @@ export const metadata: Metadata = {
     "Android TV IPTV",
     "UK IPTV",
   ],
-  authors: [{ name: siteName }],
-  creator: siteName,
-  publisher: siteName,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -43,28 +44,27 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "/",
-    siteName,
-    title: siteTitle,
-    description: siteDescription,
+    siteName: SITE_NAME,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "B1G Player – Official IPTV App",
+        alt: `${SITE_NAME} – Official IPTV App`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
     images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   appleWebApp: {
     capable: true,
-    title: siteName,
+    title: SITE_NAME,
     statusBarStyle: "default",
   },
   other: {
@@ -84,11 +84,24 @@ export const viewport: Viewport = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: siteName,
-  url: siteUrl,
-  logo: `${siteUrl}/icons/icon-512.png`,
-  image: `${siteUrl}/og-image.png`,
-  description: siteDescription,
+  name: SITE_NAME,
+  url: absoluteUrl("/"),
+  logo: absoluteUrl("/icons/icon-512.png"),
+  image: absoluteUrl("/og-image.png"),
+  description: SITE_DESCRIPTION,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: absoluteUrl("/"),
+  description: SITE_DESCRIPTION,
+  publisher: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: absoluteUrl("/"),
+  },
 };
 
 export default function RootLayout({
@@ -98,17 +111,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-GB"
       className="h-full antialiased light"
       style={{ colorScheme: "light" }}
     >
       <body className="min-h-full flex flex-col bg-white text-[#12141F] selection:bg-[#E01E26] selection:text-white font-sans">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
-        />
+        <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
         <ScrollReveal />
         {children}
       </body>

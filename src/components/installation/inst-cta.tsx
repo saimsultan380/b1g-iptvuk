@@ -31,7 +31,7 @@ export function InstCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             
             {/* Primary Button */}
-            <Link href="/b1g-iptv-subscription" className="w-full sm:w-auto">
+            <Link href="/subscription-plan/" className="w-full sm:w-auto">
               <Button
                 variant="primary"
                 size="lg"

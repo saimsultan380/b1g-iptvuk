@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Installation Guide", href: "/installation-guide" },
-  { name: "Subscription Plans", href: "/b1g-iptv-subscription" },
-  { name: "Reseller Panel", href: "/reseller-panel" },
-  { name: "Contact Us", href: "/contact" },
+  { name: "Installation Guide", href: "/installation-guide/" },
+  { name: "Subscription Plans", href: "/subscription-plan/" },
+  { name: "Reseller Panel", href: "/reseller-panel/" },
+  { name: "Contact Us", href: "/contact/" },
 ];
 
 /** Shared frosted-glass surface — desktop header + mobile navbar use the exact same look */
@@ -81,12 +81,14 @@ export function B1GHeader() {
 
         {/* 3) RIGHT: Primary CTA “Get Started” (~44px tall, rounded-[12px]) */}
         <div className="flex items-center shrink-0">
-          <Button
-            variant="primary"
-            className="h-[44px] px-6 rounded-[12px] text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white whitespace-nowrap"
-          >
-            Get Started
-          </Button>
+          <Link href="/subscription-plan/">
+            <Button
+              variant="primary"
+              className="h-[44px] px-6 rounded-[12px] text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white whitespace-nowrap"
+            >
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -155,13 +157,14 @@ export function B1GHeader() {
                   </nav>
 
                   <div className="pt-2">
-                    <Button
-                      variant="primary"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="w-full h-[48px] rounded-[12px] text-base font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"
-                    >
-                      Get Started
-                    </Button>
+                    <Link href="/subscription-plan/" onClick={() => setMobileMenuOpen(false)}>
+                      <Button
+                        variant="primary"
+                        className="w-full h-[48px] rounded-[12px] text-base font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"
+                      >
+                        Get Started
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

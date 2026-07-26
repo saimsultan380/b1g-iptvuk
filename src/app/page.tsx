@@ -14,53 +14,36 @@ import { PlaybackTips } from "@/components/sections/playback-tips";
 import { B1GFAQ } from "@/components/sections/faq";
 import { B1GCTABanner } from "@/components/sections/cta-banner";
 import { B1GFooter } from "@/components/sections/footer";
+import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
+
+const page = SITE_PAGES[0];
+
+export const metadata = buildPageMetadata({
+  title: page.title,
+  description: page.description,
+  path: page.path,
+});
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Sticky Header */}
       <B1GHeader />
+      <PageBreadcrumbs items={[...page.breadcrumbs]} showVisual={false} />
 
-      {/* 1. Hero Section */}
       <B1GHeroSection />
-
-      {/* 2. What Is B1G Player Section */}
       <WhatIsB1GPlayer />
-
-      {/* 3. Why UK Viewers Choose B1G IPTV */}
       <WhyUKViewers />
-
-      {/* 4. Live Television, Sports, Movies and Series */}
       <LiveCategories />
-
-      {/* 5. Official B1G IPTV Subscription Plans */}
       <B1GPricing />
-
-      {/* 6. What Is Included with a B1G IPTV Subscription? */}
       <WhatIsIncluded />
-
-      {/* 7. Compatible Devices */}
       <CompatibleDevices />
-
-      {/* 8. Download the Official B1G Player App */}
       <DownloadApp />
-
-      {/* 9. Use Your Subscription on More Devices */}
       <MoreDevices />
-
-      {/* 10. Start Watching in Four Steps */}
       <StartWatchingSteps />
-
-      {/* 11. Tips for Better Playback */}
       <PlaybackTips />
-
-      {/* 12. Frequently Asked Questions */}
       <B1GFAQ />
-
-      {/* 13. Call-To-Action Banner */}
       <B1GCTABanner />
-
-      {/* 14. Footer */}
       <B1GFooter />
     </main>
   );

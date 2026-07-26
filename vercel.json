@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.b1gplayer.uk" }],
+      "destination": "https://b1gplayer.uk/:path*",
+      "permanent": true
+    }
+  ]
+}

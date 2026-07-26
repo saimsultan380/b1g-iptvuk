@@ -227,7 +227,7 @@ export function WhyUKViewers() {
                   </li>
                 ))}
               </ul>
-              <Link href="/contact" className="mt-auto">
+              <Link href="/contact/" className="mt-auto">
                 <Button
                   variant="primary"
                   size="sm"

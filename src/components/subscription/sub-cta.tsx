@@ -43,7 +43,7 @@ export function SubCTA() {
             </Link>
 
             {/* Secondary Button */}
-            <Link href="/contact" className="w-full sm:w-auto">
+            <Link href="/contact/" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="lg"

@@ -36,7 +36,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/b1g-iptv-subscription"
+                  href="/subscription-plan/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Subscription Plans
@@ -44,7 +44,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/installation-guide"
+                  href="/installation-guide/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Installation Guide
@@ -69,7 +69,7 @@ export function B1GFooter() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/contact"
+                  href="/contact/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Contact Us
@@ -77,7 +77,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/b1g-iptv-subscription/#free-trial"
+                  href="/subscription-plan/#free-trial"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Request a Free Trial
@@ -85,7 +85,7 @@ export function B1GFooter() {
               </li>
               <li>
                 <Link
-                  href="/reseller-panel"
+                  href="/reseller-panel/"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Reseller Panel
