@@ -5,7 +5,10 @@ import Image from "next/image";
 
 export function B1GHeroMockup() {
   return (
-    <div className="relative w-full max-w-2xl mx-auto lg:max-w-none py-2 flex items-center justify-center">
+    <div
+      className="relative w-full max-w-2xl mx-auto lg:max-w-none py-2 flex items-center justify-center"
+      data-no-reveal
+    >
       <div className="relative w-full flex items-center justify-center">
         <Image
           src="/hero-image.PNG"

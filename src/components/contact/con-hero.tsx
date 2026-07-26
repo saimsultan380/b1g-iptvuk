@@ -119,11 +119,9 @@ export function ConHero() {
             </FadeIn>
           </div>
 
-          {/* Right Column (App Preview Mockup Image) */}
+          {/* Right Column (App Preview Mockup Image) — no entrance animation */}
           <div className="lg:col-span-6">
-            <FadeIn delay={0.1} duration={0.5}>
-              <B1GHeroMockup />
-            </FadeIn>
+            <B1GHeroMockup />
           </div>
         </div>
 
@@ -161,10 +159,10 @@ export function ConHero() {
             </FadeIn>
           </div>
 
-          {/* 2. App Preview Mockup Image */}
-          <FadeIn delay={0.08} duration={0.4} className="w-full my-2">
+          {/* 2. App Preview Mockup Image — visible on load */}
+          <div className="w-full my-2">
             <B1GHeroMockup />
-          </FadeIn>
+          </div>
 
           {/* 3. Stacked Full-Width CTA Buttons */}
           <FadeIn delay={0.15} duration={0.35} className="w-full">

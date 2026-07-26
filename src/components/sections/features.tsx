@@ -16,13 +16,13 @@ const motionRules = [
     icon: Eye,
     title: "Hero Mask Reveal",
     description:
-      "Word-by-word mask reveal with translateY 100% to 0%, skewY 8° to 0°, opacity 0 to 1 over 0.85s with ease [0.16, 1, 0.3, 1].",
+      "Word-by-word mask reveal with translateY 100% to 0%, skewY 4° to 0°, opacity 0 to 1 over 0.45s with ease [0.22, 1, 0.36, 1].",
   },
   {
     icon: Sliders,
     title: "Section Scroll Reveal",
     description:
-      "Bidirectional entrance and exit when scrolling into or out of view. Cards animate translateY 22px to 0 with 55ms sibling stagger.",
+      "One-shot entrance when scrolling into view. Cards animate translateY 10px to 0 with short sibling stagger for smooth scrolling.",
   },
   {
     icon: Cpu,
