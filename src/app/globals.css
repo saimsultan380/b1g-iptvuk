@@ -1,26 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: Geist, "Geist Fallback", system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #12141f;
+
+    --brand-red-from: #e01e26;
+    --brand-red-via: #ee2830;
+    --brand-red-to: #b5121a;
+    --brand-navy: #12141f;
+    --brand-gray: #4a4a4a;
+
+    --card: #ffffff;
+    --card-foreground: #12141f;
+
+    --primary: #e01e26;
+    --primary-foreground: #ffffff;
+
+    --border: #e5e7eb;
+    --ring: #e01e26;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: Geist, 'Geist Fallback', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Global Scroll Reveal ───────────────────────────────────────────────────
+   Add data-reveal to any element. ScrollReveal provider toggles .revealed.
+   Optional data-delay="40|80|120|160|200" for fast stagger.
+   Hero titles use data-no-reveal / h1 — never hidden.
+────────────────────────────────────────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+[data-reveal][data-delay="40"]  { transition-delay: 0.04s; }
+[data-reveal][data-delay="50"]  { transition-delay: 0.05s; }
+[data-reveal][data-delay="80"]  { transition-delay: 0.08s; }
+[data-reveal][data-delay="100"] { transition-delay: 0.10s; }
+[data-reveal][data-delay="120"] { transition-delay: 0.12s; }
+[data-reveal][data-delay="150"] { transition-delay: 0.15s; }
+[data-reveal][data-delay="160"] { transition-delay: 0.16s; }
+[data-reveal][data-delay="200"] { transition-delay: 0.20s; }
+[data-reveal][data-delay="250"] { transition-delay: 0.18s; }
+[data-reveal][data-delay="300"] { transition-delay: 0.20s; }
+
+/* Hero titles must stay visible — never wait on scroll */
+h1,
+.text-h1-b1g,
+[data-no-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Red Highlighted Text Utility for H1, H2, and Section Titles */
+.text-brand-gradient {
+  background: linear-gradient(to right, #E01E26 0%, #FF5A5F 50%, #8E0A0F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* Typography Tokens (Max Font Weight 700) */
+.text-h1-b1g {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 28px;
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #12141f;
+}
+@media (min-width: 640px) {
+  .text-h1-b1g {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1024px) {
+  .text-h1-b1g {
+    font-size: 42px;
+  }
+}
+@media (min-width: 1280px) {
+  .text-h1-b1g {
+    font-size: 46px;
+  }
+}
+
+.text-h2 {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #12141f;
+}
+@media (min-width: 640px) {
+  .text-h2 {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1024px) {
+  .text-h2 {
+    font-size: 40px;
+  }
+}
+
+.text-body {
+  font-family: Geist, 'Geist Fallback', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #4a4a4a;
+}
+@media (min-width: 640px) {
+  .text-body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* Primary CTA Shine Sweep */
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  20%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  animation: shine-sweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-effect::after {
+    animation: none;
+    display: none;
+  }
+}
+
+/* Mobile Non-Title Text Size Override (Exactly 14px) */
+@media (max-width: 639.98px) {
+  body, p, li, button, input, textarea, select,
+  .text-xs, .text-sm, .text-base, .text-body {
+    font-size: 14px !important;
+  }
+
+  span:not(h1 *):not(h2 *):not(h3 *):not(h4 *):not(h5 *):not(h6 *):not(.text-h1-b1g *):not(.text-h2 *):not(.font-heading):not(.text-brand-gradient) {
+    font-size: 14px !important;
+  }
 }
