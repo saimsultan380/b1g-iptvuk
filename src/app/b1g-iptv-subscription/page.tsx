@@ -12,7 +12,7 @@ import { SubRenew } from "@/components/subscription/sub-renew";
 import { SubFAQ } from "@/components/subscription/sub-faq";
 import { SubCTA } from "@/components/subscription/sub-cta";
 import { B1GFooter } from "@/components/sections/footer";
-import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
 
 const page = SITE_PAGES.find((p) => p.path === "/b1g-iptv-subscription/")!;
@@ -27,7 +27,7 @@ export default function SubscriptionPlansPage() {
   return (
     <main className="min-h-screen bg-white">
       <B1GHeader />
-      <PageBreadcrumbs items={[...page.breadcrumbs]} />
+      <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <SubHero />
       <SubConsiderations />

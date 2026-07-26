@@ -8,7 +8,7 @@ import { ConReseller } from "@/components/contact/con-reseller";
 import { ConFAQ } from "@/components/contact/con-faq";
 import { ConCTA } from "@/components/contact/con-cta";
 import { B1GFooter } from "@/components/sections/footer";
-import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
 
 const page = SITE_PAGES.find((p) => p.path === "/contact/")!;
@@ -23,7 +23,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white">
       <B1GHeader />
-      <PageBreadcrumbs items={[...page.breadcrumbs]} />
+      <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <ConHero />
       <ConHelpOptions />

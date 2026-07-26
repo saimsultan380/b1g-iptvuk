@@ -10,7 +10,7 @@ import { InstTroubleshooting } from "@/components/installation/inst-troubleshoot
 import { InstFAQ } from "@/components/installation/inst-faq";
 import { InstCTA } from "@/components/installation/inst-cta";
 import { B1GFooter } from "@/components/sections/footer";
-import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
 
 const page = SITE_PAGES.find((p) => p.path === "/b1g-player-installation-guide/")!;
@@ -25,7 +25,7 @@ export default function InstallationGuidePage() {
   return (
     <main className="min-h-screen bg-white">
       <B1GHeader />
-      <PageBreadcrumbs items={[...page.breadcrumbs]} />
+      <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <InstHero />
       <InstBeforeBegin />

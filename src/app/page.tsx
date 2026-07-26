@@ -14,7 +14,7 @@ import { PlaybackTips } from "@/components/sections/playback-tips";
 import { B1GFAQ } from "@/components/sections/faq";
 import { B1GCTABanner } from "@/components/sections/cta-banner";
 import { B1GFooter } from "@/components/sections/footer";
-import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
 
 const page = SITE_PAGES[0];
@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
       <B1GHeader />
-      <PageBreadcrumbs items={[...page.breadcrumbs]} showVisual={false} />
+      <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <B1GHeroSection />
       <WhatIsB1GPlayer />
