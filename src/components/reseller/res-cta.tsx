@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Users, Headphones } from "lucide-react";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function ResCTA() {
   return (
@@ -31,7 +31,12 @@ export function ResCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             
             {/* Primary Button */}
-            <Link href="#reseller-packages" className="w-full sm:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("reseller")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button
                 variant="primary"
                 size="lg"
@@ -40,10 +45,15 @@ export function ResCTA() {
                 <Users className="mr-2 h-4 w-4 stroke-[2.5]" />
                 <span>Apply for Reseller Access</span>
               </Button>
-            </Link>
+            </a>
 
             {/* Secondary Button */}
-            <Link href="#faq" className="w-full sm:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("reseller")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button
                 variant="outline"
                 size="lg"
@@ -52,7 +62,7 @@ export function ResCTA() {
                 <Headphones className="mr-2 h-4 w-4 text-[#E01E26] stroke-[2.5]" />
                 <span>Contact the Reseller Team</span>
               </Button>
-            </Link>
+            </a>
 
           </div>
 

@@ -5,6 +5,8 @@ import { MaskReveal } from "@/components/animation/mask-reveal";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Tv, Calendar } from "lucide-react";
+import { buildIntentWhatsAppUrl, ROUTES } from "@/lib/seo";
+import Link from "next/link";
 
 interface B1GHeroContentProps {
   showFullBodyCopy?: boolean;
@@ -56,25 +58,34 @@ export function B1GHeroContent({ showFullBodyCopy = true }: B1GHeroContentProps)
 export function B1GHeroCTAs({ className }: { className?: string }) {
   return (
     <div className={`flex flex-row items-center gap-2 sm:gap-4 w-full ${className || ""}`}>
-      <Button
-        variant="primary"
-        size="lg"
-        className="flex-1 sm:flex-initial rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-3 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm lg:text-base font-semibold whitespace-nowrap"
+      <a
+        href={buildIntentWhatsAppUrl("freeTrial")}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex-1 sm:flex-initial"
       >
-        <Tv className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 stroke-[2.5]" />
-        <span className="hidden sm:inline">Start Your Free Trial</span>
-        <span className="inline sm:hidden">Start Free Trial</span>
-      </Button>
+        <Button
+          variant="primary"
+          size="lg"
+          className="w-full rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-3 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm lg:text-base font-semibold whitespace-nowrap"
+        >
+          <Tv className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 stroke-[2.5]" />
+          <span className="hidden sm:inline">Start Your Free Trial</span>
+          <span className="inline sm:hidden">Start Free Trial</span>
+        </Button>
+      </a>
 
-      <Button
-        variant="outline"
-        size="lg"
-        className="flex-1 sm:flex-initial rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] px-3 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm lg:text-base font-semibold whitespace-nowrap"
-      >
-        <Calendar className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 text-[#E01E26] shrink-0 stroke-[2.5]" />
-        <span className="hidden sm:inline">View B1G IPTV Subscription Plans</span>
-        <span className="inline sm:hidden">Subscription Plans</span>
-      </Button>
+      <Link href={ROUTES.subscription} className="flex-1 sm:flex-initial">
+        <Button
+          variant="outline"
+          size="lg"
+          className="w-full rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] px-3 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm lg:text-base font-semibold whitespace-nowrap"
+        >
+          <Calendar className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 text-[#E01E26] shrink-0 stroke-[2.5]" />
+          <span className="hidden sm:inline">View B1G IPTV Subscription Plans</span>
+          <span className="inline sm:hidden">Subscription Plans</span>
+        </Button>
+      </Link>
     </div>
   );
 }

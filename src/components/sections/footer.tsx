@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { B1GLogo } from "@/components/brand/b1g-logo";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function B1GFooter() {
   return (
@@ -76,12 +77,14 @@ export function B1GFooter() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/b1g-iptv-subscription/#free-trial"
+                <a
+                  href={buildIntentWhatsAppUrl("freeTrial")}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
                 >
                   Request a Free Trial
-                </Link>
+                </a>
               </li>
               <li>
                 <Link

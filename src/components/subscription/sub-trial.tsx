@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, HelpCircle } from "lucide-react";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 const trialChecks = [
   "Device compatibility",
@@ -71,7 +72,12 @@ export function SubTrial() {
           </div>
 
           <div className="shrink-0 w-full lg:w-auto">
-            <Link href="/contact/" className="w-full lg:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("freeTrial")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full lg:w-auto"
+            >
               <Button
                 variant="primary"
                 size="lg"
@@ -80,7 +86,7 @@ export function SubTrial() {
                 <span>Request a Trial</span>
                 <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
               </Button>
-            </Link>
+            </a>
           </div>
 
         </FadeIn>

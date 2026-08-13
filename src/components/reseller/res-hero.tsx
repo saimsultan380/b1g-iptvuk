@@ -7,6 +7,7 @@ import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Layout, Users, ShieldCheck, Headphones, Calendar } from "lucide-react";
 import { MaskReveal } from "@/components/animation/mask-reveal";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function ResHero() {
   return (
@@ -57,7 +58,12 @@ export function ResHero() {
             <FadeIn delay={0.15} duration={0.4} className="mt-8 w-full">
               <div className="flex flex-row items-center gap-2 sm:gap-4 w-full">
                 {/* Primary CTA */}
-                <Link href="#reseller-packages" className="flex-1 sm:flex-initial">
+                <a
+                  href={buildIntentWhatsAppUrl("reseller")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial"
+                >
                   <Button
                     variant="primary"
                     size="lg"
@@ -66,10 +72,15 @@ export function ResHero() {
                     <Users className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 stroke-[2.5]" />
                     <span>Become a B1G Player Reseller</span>
                   </Button>
-                </Link>
+                </a>
 
                 {/* Secondary CTA */}
-                <Link href="#faq" className="flex-1 sm:flex-initial">
+                <a
+                  href={buildIntentWhatsAppUrl("reseller")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial"
+                >
                   <Button
                     variant="outline"
                     size="lg"
@@ -78,7 +89,7 @@ export function ResHero() {
                     <Headphones className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 text-[#E01E26] shrink-0 stroke-[2.5]" />
                     <span>Contact the Reseller Team</span>
                   </Button>
-                </Link>
+                </a>
               </div>
             </FadeIn>
 
@@ -173,7 +184,12 @@ export function ResHero() {
           {/* 3. Stacked Full-Width CTA Buttons */}
           <FadeIn delay={0.15} duration={0.35} className="w-full">
             <div className="flex flex-col gap-3 w-full">
-              <Link href="#reseller-packages" className="w-full">
+              <a
+                href={buildIntentWhatsAppUrl("reseller")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
                 <Button
                   variant="primary"
                   size="lg"
@@ -182,9 +198,14 @@ export function ResHero() {
                   <Users className="mr-2 h-4 w-4 shrink-0 stroke-[2.5]" />
                   <span>Become a Reseller</span>
                 </Button>
-              </Link>
+              </a>
 
-              <Link href="#faq" className="w-full">
+              <a
+                href={buildIntentWhatsAppUrl("reseller")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
                 <Button
                   variant="outline"
                   size="lg"
@@ -193,7 +214,7 @@ export function ResHero() {
                   <Headphones className="mr-2 h-4 w-4 text-[#E01E26] shrink-0 stroke-[2.5]" />
                   <span>Contact the Team</span>
                 </Button>
-              </Link>
+              </a>
             </div>
           </FadeIn>
 

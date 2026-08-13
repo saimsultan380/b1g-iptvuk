@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { CreditCard, MessageSquare } from "lucide-react";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function SubCTA() {
   return (
@@ -31,7 +31,12 @@ export function SubCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             
             {/* Primary Button */}
-            <Link href="#pricing-plans" className="w-full sm:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("buySubscription")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button
                 variant="primary"
                 size="lg"
@@ -40,10 +45,15 @@ export function SubCTA() {
                 <CreditCard className="mr-2 h-4 w-4 stroke-[2.5]" />
                 <span>Buy B1G IPTV Subscription</span>
               </Button>
-            </Link>
+            </a>
 
             {/* Secondary Button */}
-            <Link href="/contact/" className="w-full sm:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("subscriptionSupport")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button
                 variant="outline"
                 size="lg"
@@ -52,7 +62,7 @@ export function SubCTA() {
                 <MessageSquare className="mr-2 h-4 w-4 text-[#E01E26] stroke-[2.5]" />
                 <span>Contact Subscription Support</span>
               </Button>
-            </Link>
+            </a>
 
           </div>
 

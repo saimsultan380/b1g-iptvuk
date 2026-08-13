@@ -4,6 +4,7 @@ import React from "react";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Layers, Check } from "lucide-react";
+import { buildResellerPackageWhatsAppUrl } from "@/lib/seo";
 
 interface ResellerPackage {
   id: string;
@@ -148,17 +149,24 @@ export function ResPackages() {
                 </div>
 
                 {/* CTA Button */}
-                <Button
-                  variant={pkg.isRecommended ? "primary" : "outline"}
-                  size="lg"
-                  className={`w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
-                    pkg.isRecommended
-                      ? "bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none"
-                      : "border-2 border-[#E01E26] bg-white text-[#12141F] hover:bg-red-50"
-                  }`}
+                <a
+                  href={buildResellerPackageWhatsAppUrl(pkg.name, pkg.price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
                 >
-                  {pkg.ctaText}
-                </Button>
+                  <Button
+                    variant={pkg.isRecommended ? "primary" : "outline"}
+                    size="lg"
+                    className={`w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
+                      pkg.isRecommended
+                        ? "bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none"
+                        : "border-2 border-[#E01E26] bg-white text-[#12141F] hover:bg-red-50"
+                    }`}
+                  >
+                    {pkg.ctaText}
+                  </Button>
+                </a>
 
               </div>
             ))}

@@ -7,6 +7,7 @@ import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, CreditCard, CheckCircle2, ShieldCheck, Settings } from "lucide-react";
 import { MaskReveal } from "@/components/animation/mask-reveal";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function ConHero() {
   return (
@@ -54,7 +55,12 @@ export function ConHero() {
             <FadeIn delay={0.15} duration={0.4} className="mt-8 w-full">
               <div className="flex flex-row items-center gap-2 sm:gap-4 w-full">
                 {/* Primary CTA */}
-                <Link href="#contact-form" className="flex-1 sm:flex-initial">
+                <a
+                  href={buildIntentWhatsAppUrl("contact")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial"
+                >
                   <Button
                     variant="primary"
                     size="lg"
@@ -63,7 +69,7 @@ export function ConHero() {
                     <MessageSquare className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 stroke-[2.5]" />
                     <span>Send Your Enquiry</span>
                   </Button>
-                </Link>
+                </a>
 
                 {/* Secondary CTA */}
                 <Link href="/b1g-iptv-subscription/" className="flex-1 sm:flex-initial">
@@ -167,7 +173,12 @@ export function ConHero() {
           {/* 3. Stacked Full-Width CTA Buttons */}
           <FadeIn delay={0.15} duration={0.35} className="w-full">
             <div className="flex flex-col gap-3 w-full">
-              <Link href="#contact-form" className="w-full">
+              <a
+                href={buildIntentWhatsAppUrl("contact")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
                 <Button
                   variant="primary"
                   size="lg"
@@ -176,7 +187,7 @@ export function ConHero() {
                   <MessageSquare className="mr-2 h-4 w-4 shrink-0 stroke-[2.5]" />
                   <span>Send Your Enquiry</span>
                 </Button>
-              </Link>
+              </a>
 
               <Link href="/b1g-iptv-subscription/" className="w-full">
                 <Button

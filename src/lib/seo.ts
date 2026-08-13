@@ -31,10 +31,44 @@ export function buildWhatsAppUrl(message?: string): string {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message.trim())}`;
 }
 
+/** Common short intents so the owner knows the source site + what the visitor wants. */
+export const WHATSAPP_INTENTS = {
+  freeTrial:
+    "Hi, I came from b1gplayer.uk. I want to start a free trial.",
+  getStarted:
+    "Hi, I came from b1gplayer.uk. I want to get started with B1G IPTV.",
+  buySubscription:
+    "Hi, I came from b1gplayer.uk. I want to buy a B1G IPTV subscription.",
+  support:
+    "Hi, I came from b1gplayer.uk. I need support with B1G Player.",
+  subscriptionSupport:
+    "Hi, I came from b1gplayer.uk. I need help with a B1G IPTV subscription.",
+  reseller:
+    "Hi, I came from b1gplayer.uk. I'm interested in becoming a reseller.",
+  contact:
+    "Hi, I came from b1gplayer.uk. I have an enquiry.",
+} as const;
+
+export type WhatsAppIntent = keyof typeof WHATSAPP_INTENTS;
+
+export function buildIntentWhatsAppUrl(intent: WhatsAppIntent): string {
+  return buildWhatsAppUrl(WHATSAPP_INTENTS[intent]);
+}
+
 /** Prefilled order message so the owner can see the source site + plan. */
 export function buildPlanWhatsAppUrl(planName: string, price: string): string {
   return buildWhatsAppUrl(
     `Hi, I came from b1gplayer.uk. I want the ${planName} plan (${price}).`
+  );
+}
+
+/** Prefilled reseller package message. */
+export function buildResellerPackageWhatsAppUrl(
+  packageName: string,
+  price: string
+): string {
+  return buildWhatsAppUrl(
+    `Hi, I came from b1gplayer.uk. I want the ${packageName} (${price}).`
   );
 }
 

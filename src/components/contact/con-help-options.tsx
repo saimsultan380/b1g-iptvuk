@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { KeyRound, ShieldAlert, BadgeInfo, HelpCircle, ArrowRight, Settings } from "lucide-react";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 const trialChecks = [
   "Device compatibility",
@@ -108,7 +109,12 @@ export function ConHelpOptions() {
                 </p>
               </div>
 
-              <Link href="#contact-form" className="w-full">
+              <a
+                href={buildIntentWhatsAppUrl("freeTrial")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
                 <Button
                   variant="primary"
                   className="w-full rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white py-3 text-xs sm:text-sm font-semibold"
@@ -116,7 +122,7 @@ export function ConHelpOptions() {
                   <span>Request Your Free Trial</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Card 2: Subscription Assistance */}

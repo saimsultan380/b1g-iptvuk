@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Home } from "lucide-react";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 export function ConCTA() {
   return (
@@ -31,7 +32,12 @@ export function ConCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             
             {/* Primary Button */}
-            <Link href="#contact-form" className="w-full sm:w-auto">
+            <a
+              href={buildIntentWhatsAppUrl("contact")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button
                 variant="primary"
                 size="lg"
@@ -40,7 +46,7 @@ export function ConCTA() {
                 <MessageSquare className="mr-2 h-4 w-4 stroke-[2.5]" />
                 <span>Send Your Enquiry</span>
               </Button>
-            </Link>
+            </a>
 
             {/* Secondary Button */}
             <Link href="/" className="w-full sm:w-auto">

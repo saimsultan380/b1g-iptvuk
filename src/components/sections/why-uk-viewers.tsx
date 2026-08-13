@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
+import { buildIntentWhatsAppUrl } from "@/lib/seo";
 import {
   Tv,
   Film,
@@ -227,7 +228,12 @@ export function WhyUKViewers() {
                   </li>
                 ))}
               </ul>
-              <Link href="/contact/" className="mt-auto">
+              <a
+                href={buildIntentWhatsAppUrl("support")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto"
+              >
                 <Button
                   variant="primary"
                   size="sm"
@@ -236,7 +242,7 @@ export function WhyUKViewers() {
                   <span>Contact B1G Player Support</span>
                   <ArrowRight className="ml-2 h-3.5 w-3.5 stroke-[2.5]" />
                 </Button>
-              </Link>
+              </a>
             </div>
 
           </div>
