@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowUpRight, ArrowRight } from "lucide-react";
+import { buildPlanWhatsAppUrl } from "@/lib/seo";
 
 interface PricingPlan {
   id: string;
@@ -226,15 +227,22 @@ export function B1GPricing() {
                   </ul>
                 </div>
 
-                {/* Card Button / Action — red on all plans */}
+                {/* Card Button / Action — opens WhatsApp with plan + site source */}
                 <div className="mt-auto">
-                  <Button
-                    variant="primary"
-                    className="w-full justify-between rounded-[12px] font-bold text-xs py-3 px-4 flex items-center bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 border-0"
+                  <a
+                    href={buildPlanWhatsAppUrl(plan.name, plan.price)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full"
                   >
-                    <span>{plan.ctaText}</span>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 stroke-[2.5]" />
-                  </Button>
+                    <Button
+                      variant="primary"
+                      className="w-full justify-between rounded-[12px] font-bold text-xs py-3 px-4 flex items-center bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 border-0"
+                    >
+                      <span>{plan.ctaText}</span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 stroke-[2.5]" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}

@@ -9,7 +9,7 @@ import {
   absoluteUrl,
   getSiteOrigin,
 } from "@/lib/seo";
-
+import { WhatsAppFloatingButton } from "@/components/ui/whatsapp-floating-button";
 const siteOrigin = getSiteOrigin();
 
 export const metadata: Metadata = {
@@ -122,6 +122,7 @@ export default function RootLayout({
         <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
         <ScrollReveal />
         {children}
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );

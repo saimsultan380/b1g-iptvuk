@@ -20,6 +20,24 @@ export const ROUTES = {
   contact: "/contact/",
 } as const;
 
+/** Official support WhatsApp (E.164 without + for wa.me links). */
+export const WHATSAPP_NUMBER_E164 = "447848177296";
+export const WHATSAPP_NUMBER_DISPLAY = "+44 7848 177296";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER_E164}`;
+
+/** WhatsApp chat URL with an optional prefilled message. */
+export function buildWhatsAppUrl(message?: string): string {
+  if (!message?.trim()) return WHATSAPP_URL;
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message.trim())}`;
+}
+
+/** Prefilled order message so the owner can see the source site + plan. */
+export function buildPlanWhatsAppUrl(planName: string, price: string): string {
+  return buildWhatsAppUrl(
+    `Hi, I came from b1gplayer.uk. I want the ${planName} plan (${price}).`
+  );
+}
+
 /**
  * Prefer explicit env in preview/staging; production always resolves to non-www.
  * Strips trailing slash and any accidental www. prefix from the origin.

@@ -4,6 +4,7 @@ import React from "react";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { Calendar, Check } from "lucide-react";
+import { buildPlanWhatsAppUrl } from "@/lib/seo";
 
 interface PricingPlan {
   id: string;
@@ -147,14 +148,21 @@ export function SubPricing() {
                   </ul>
                 </div>
 
-                {/* CTA Button — red on all plans */}
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none border-0"
+                {/* CTA Button — opens WhatsApp with plan + site source */}
+                <a
+                  href={buildPlanWhatsAppUrl(plan.name, plan.price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
                 >
-                  {plan.ctaText}
-                </Button>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none border-0"
+                  >
+                    {plan.ctaText}
+                  </Button>
+                </a>
 
               </div>
             ))}
