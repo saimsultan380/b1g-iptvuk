@@ -48,7 +48,7 @@ export function Features() {
   return (
     <section id="features" className="py-20 md:py-28 bg-slate-50/60 border-y border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AutoScrollReveal className="flex flex-col items-center text-center mb-16">
+        <AutoScrollReveal asCards={false} className="flex flex-col items-center text-center mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-[#E01E26] bg-red-50 px-3 py-1 rounded-full border border-red-100">
             Core Specifications
           </span>

@@ -3,9 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
+import { TelvisCard } from "@/components/animation/telvis-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowUpRight, ArrowRight } from "lucide-react";
-import { buildPlanWhatsAppUrl } from "@/lib/seo";
+import { ROUTES, buildPlanWhatsAppUrl } from "@/lib/seo";
 
 interface PricingPlan {
   id: string;
@@ -18,103 +19,63 @@ interface PricingPlan {
   recommended?: boolean;
 }
 
+const sharedFeatures = [
+  "One active connection",
+  "35,000+ live television channels",
+  "50,000+ movies",
+  "10,000+ television series",
+  "Sports and entertainment categories",
+  "HD, Full HD and 4K where supported",
+  "Electronic Programme Guide (EPG) where available",
+  "Catch-Up where available",
+  "Official B1G Player app access",
+  "Instant account activation",
+  "UK customer support",
+];
+
 const pricingPlans: PricingPlan[] = [
   {
     id: "1-month",
     name: "1 Month",
     price: "£10",
-    period: "/mo",
-    description: "A flexible option for customers who prefer monthly access.",
+    period: "total",
+    description: "A flexible option for customers who prefer short-term access.",
     ctaText: "Choose 1 Month",
-    features: [
-      "1 month of account access",
-      "35,000+ live television channels",
-      "50,000+ movies",
-      "10,000+ television series",
-      "Sports and entertainment categories",
-      "HD, Full HD and 4K where supported",
-      "Electronic Programme Guide",
-      "Catch-Up where available",
-      "Official app access",
-      "Instant activation",
-      "UK customer support",
-    ],
+    features: ["Access period: 1 month", ...sharedFeatures],
   },
   {
     id: "3-months",
-    name: "3 Month",
+    name: "3 Months",
     price: "£20",
-    period: "/mo",
-    description: "Suitable for customers who prefer a shorter commitment.",
+    period: "total",
+    description: "A practical choice for customers who want greater value without making a long-term commitment.",
     ctaText: "Choose 3 Months",
-    features: [
-      "3 months of account access",
-      "35,000+ live television channels",
-      "50,000+ movies",
-      "10,000+ television series",
-      "Sports and entertainment categories",
-      "HD, Full HD and 4K where supported",
-      "Electronic Programme Guide",
-      "Catch-Up where available",
-      "Official app access",
-      "Instant activation",
-      "UK customer support",
-    ],
+    features: ["Access period: 3 months", ...sharedFeatures],
   },
   {
     id: "6-months",
-    name: "6 Month",
+    name: "6 Months",
     price: "£30",
-    period: "/mo",
-    description: "A mid-length option for viewers who want a balance between flexibility and value.",
+    period: "total",
+    description: "A better-value option for regular viewers who want six months of uninterrupted account access.",
     ctaText: "Choose 6 Months",
-    features: [
-      "6 months of account access",
-      "35,000+ live television channels",
-      "50,000+ movies",
-      "10,000+ television series",
-      "Sports and entertainment categories",
-      "HD, Full HD and 4K where supported",
-      "Electronic Programme Guide",
-      "Catch-Up where available",
-      "Official app access",
-      "Instant activation",
-      "UK customer support",
-    ],
+    features: ["Access period: 6 months", ...sharedFeatures],
   },
   {
     id: "12-months",
-    name: "12 Month",
+    name: "12 Months + 1 Month Free",
     price: "£45",
-    period: "/mo",
-    description: "A longer-term option for regular viewers. Includes 1 month free.",
-    ctaText: "Choose 12 Months + 1 Month Free",
+    period: "total",
+    description: "Our best long-term value, providing a full year of access plus one additional month at no extra cost.",
+    ctaText: "Choose Annual Plan",
     recommended: true,
-    features: [
-      "13 months of account access",
-      "35,000+ live television channels",
-      "50,000+ movies",
-      "10,000+ television series",
-      "Sports and entertainment categories",
-      "HD, Full HD and 4K where supported",
-      "Electronic Programme Guide",
-      "Catch-Up where available",
-      "Official app access",
-      "Instant activation",
-      "UK customer support",
-    ],
+    features: ["Access period: 13 months in total — 12 months plus 1 month free", ...sharedFeatures],
   },
 ];
 
 const NormalTick = () => (
   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-50 text-[#E01E26] mt-0.5">
-    <svg
-      className="h-3 w-3"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={3}
-    >
+    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   </span>
@@ -122,13 +83,7 @@ const NormalTick = () => (
 
 const RecommendedTick = () => (
   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E01E26] text-white mt-0.5">
-    <svg
-      className="h-3 w-3"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={3}
-    >
+    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   </span>
@@ -136,71 +91,47 @@ const RecommendedTick = () => (
 
 export function B1GPricing() {
   return (
-    <section
-      id="pricing"
-      className="w-full py-12 sm:py-20 bg-white border-t border-slate-200"
-    >
+    <section id="pricing" className="w-full py-12 sm:py-20 bg-white border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        
-        {/* ── Section Heading & Intro ── */}
         <FadeIn className="w-full max-w-4xl mb-12">
           <h2 className="text-h2 font-bold tracking-tight text-[#12141F]">
-            Official B1G IPTV{" "}
-            <span className="text-brand-gradient font-bold">Subscription Plans</span>
+            Choose Your{" "}
+            <span className="text-brand-gradient font-bold">B1G IPTV Subscription</span>
           </h2>
           <div className="mt-4 space-y-3 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
             <p>
-              Choose a plan based on how long you want access and the option that best suits your budget.
-            </p>
-            <p>
-              Every current plan includes access to the B1G Player app on supported devices, secure login information and customer assistance.
+              Every standard plan includes one active connection, private login details, the same core catalogue and setup guidance. The main difference is the subscription duration and effective monthly cost.
             </p>
           </div>
         </FadeIn>
 
-        {/* ── Pricing Cards Grid ── */}
-        <FadeIn className="w-full mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full mb-10">
             {pricingPlans.map((plan, i) => (
-              <div
+              <TelvisCard
                 key={plan.id}
-                data-reveal
-                data-delay={String(i * 100)}
+                index={i}
                 className={`rounded-[12px] border bg-white p-6 flex flex-col justify-between h-full relative transition-all duration-200 ${
-                  plan.recommended
-                    ? "border-[#E01E26]"
-                    : "border-slate-200"
+                  plan.recommended ? "border-[#E01E26]" : "border-slate-200"
                 }`}
               >
-                {/* Recommended Badge on Top Border */}
                 {plan.recommended && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white border border-[#E01E26] text-[#E01E26] px-3.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase select-none">
                     Recommended
                   </span>
                 )}
 
-                {/* Card Top / Header */}
                 <div>
-                  {/* Icon Box */}
                   <div
                     className={`flex h-10 w-10 items-center justify-center rounded-[10px] mb-4 shrink-0 ${
-                      plan.recommended
-                        ? "bg-red-50 text-[#E01E26]"
-                        : "bg-slate-50 text-slate-400"
+                      plan.recommended ? "bg-red-50 text-[#E01E26]" : "bg-slate-50 text-slate-400"
                     }`}
                   >
                     <Calendar className="h-5 w-5 stroke-[2]" />
                   </div>
-
-                  {/* Title & Description */}
-                  <h3 className="text-lg font-bold text-[#12141F] mb-1">
-                    {plan.name}
-                  </h3>
+                  <h3 className="text-lg font-bold text-[#12141F] mb-1">{plan.name}</h3>
                   <p className="text-xs text-slate-500 mb-4 font-semibold leading-relaxed">
                     {plan.description}
                   </p>
-
-                  {/* Price */}
                   <div className="flex items-baseline mb-6">
                     <span
                       className={`font-heading text-[42px] leading-none sm:text-4xl font-extrabold tracking-tight ${
@@ -213,11 +144,9 @@ export function B1GPricing() {
                       {plan.period}
                     </span>
                   </div>
-
-                  {/* Features List */}
                   <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5">
                         {plan.recommended ? <RecommendedTick /> : <NormalTick />}
                         <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
                           {feature}
@@ -227,7 +156,6 @@ export function B1GPricing() {
                   </ul>
                 </div>
 
-                {/* Card Button / Action — opens WhatsApp with plan + site source */}
                 <div className="mt-auto">
                   <a
                     href={buildPlanWhatsAppUrl(plan.name, plan.price)}
@@ -244,19 +172,20 @@ export function B1GPricing() {
                     </Button>
                   </a>
                 </div>
-              </div>
+              </TelvisCard>
             ))}
           </div>
-        </FadeIn>
 
-        {/* ── Pricing Footer / Compare Plans CTA ── */}
-        <FadeIn className="w-full">
-          <div className="w-full rounded-[12px] border border-slate-200 bg-white p-5 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed max-w-2xl">
-              Full plan details, connection rules and current availability should be reviewed before placing an order.
-            </p>
-
-            <Link href="/b1g-iptv-subscription/#compare-plans" className="shrink-0 w-full md:w-auto">
+        <div className="w-full rounded-[12px] border border-slate-200 bg-white p-5 sm:p-7 flex flex-col gap-4">
+            <FadeIn>
+              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
+                All prices displayed above are total package prices, not recurring monthly charges. Every B1G IPTV Subscription includes the same catalogue, app access and core service features. Only the subscription duration and total price change.
+              </p>
+              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed mt-3">
+                One active stream is included unless your order states otherwise. HD, Full HD and 4K quality, EPG information and Catch-Up availability can vary according to the selected channel, programme, device and internet connection. Any separate fee charged by an optional third-party player or app store is not included in the subscription price.
+              </p>
+            </FadeIn>
+            <Link href={ROUTES.subscription} className="shrink-0 w-full md:w-auto self-start">
               <Button
                 variant="outline"
                 size="lg"
@@ -267,8 +196,6 @@ export function B1GPricing() {
               </Button>
             </Link>
           </div>
-        </FadeIn>
-
       </div>
     </section>
   );

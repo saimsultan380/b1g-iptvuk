@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FadeIn } from "@/components/animation/fade-in";
+import { TelvisCard } from "@/components/animation/telvis-motion";
 import { Button } from "@/components/ui/button";
 import { Layers, Check } from "lucide-react";
 import { buildResellerPackageWhatsAppUrl } from "@/lib/seo";
@@ -81,11 +82,11 @@ export function ResPackages() {
         </FadeIn>
 
         {/* Packages Grid */}
-        <FadeIn className="w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch w-full">
-            {packagesList.map((pkg) => (
-              <div
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch w-full">
+            {packagesList.map((pkg, index) => (
+              <TelvisCard
                 key={pkg.id}
+                index={index}
                 className={`relative flex flex-col justify-between rounded-[12px] border bg-white p-6 sm:p-8 transition-all duration-200 ${
                   pkg.isRecommended
                     ? "border-[#E01E26] ring-1 ring-[#E01E26]"
@@ -168,10 +169,9 @@ export function ResPackages() {
                   </Button>
                 </a>
 
-              </div>
+              </TelvisCard>
             ))}
           </div>
-        </FadeIn>
 
       </div>
     </section>

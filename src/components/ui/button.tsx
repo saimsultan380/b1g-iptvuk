@@ -4,6 +4,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { telvisButtonMotion, useTelvisParent } from "@/components/animation/telvis-motion";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center text-sm font-semibold tracking-tight transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none whitespace-nowrap shrink-0",
@@ -37,31 +38,45 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   enableShine?: boolean;
+  /** Hero mount CTA uses 0.52s; scroll CTAs use the cta preset. */
+  reveal?: "cta" | "hero" | "none";
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, enableShine = true, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      enableShine = true,
+      reveal = "cta",
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const shouldReduceMotion = useReducedMotion();
+    const nested = useTelvisParent();
 
     const isPrimary = variant === "primary" || !variant;
     const showShine = isPrimary && enableShine;
 
-    const easeCurve = [0.21, 0.47, 0.32, 0.98] as const;
+    const revealMotion = telvisButtonMotion({
+      reduced: shouldReduceMotion,
+      nested: nested || reveal === "none",
+      hero: reveal === "hero",
+    });
 
     return (
       <motion.button
         ref={ref}
-        whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
-        whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
-        transition={{
-          duration: 0.2,
-          ease: easeCurve,
-        }}
         className={cn(
           buttonVariants({ variant, size }),
           showShine && !shouldReduceMotion ? "shine-effect" : "",
+          revealMotion.className,
           className
         )}
+        {...revealMotion.props}
         {...(props as React.ComponentPropsWithoutRef<typeof motion.button>)}
       >
         {children}

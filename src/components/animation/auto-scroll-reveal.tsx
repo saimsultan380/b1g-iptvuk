@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { TelvisCard, TelvisReveal } from "@/components/animation/telvis-motion";
 
 interface AutoScrollRevealProps {
   children: React.ReactNode;
@@ -10,39 +11,26 @@ interface AutoScrollRevealProps {
   delay?: number;
   yOffset?: number;
   duration?: number;
+  asCards?: boolean;
 }
 
-/**
- * Staggers children via global data-reveal (fast CSS, scroll up + down).
- */
 export function AutoScrollReveal({
   children,
   className,
-  staggerChildren = 0.04,
-  delay = 0,
+  asCards = true,
 }: AutoScrollRevealProps) {
+  if (!asCards) {
+    return <TelvisReveal className={className}>{children}</TelvisReveal>;
+  }
+
   return (
     <div className={cn(className)}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
-
-        const ms = Math.round((delay + index * staggerChildren) * 1000);
-        const delayAttr =
-          ms <= 0 ? undefined :
-          ms <= 40 ? "40" :
-          ms <= 80 ? "80" :
-          ms <= 120 ? "120" :
-          ms <= 160 ? "160" :
-          "200";
-
         return (
-          <div
-            data-reveal
-            {...(delayAttr ? { "data-delay": delayAttr } : {})}
-            className="transform-gpu"
-          >
+          <TelvisCard key={child.key ?? index} index={index} className="h-full">
             {child}
-          </div>
+          </TelvisCard>
         );
       })}
     </div>
@@ -55,29 +43,17 @@ interface ScrollRevealItemProps {
   yOffset?: number;
   duration?: number;
   delay?: number;
+  index?: number;
 }
 
 export function ScrollRevealItem({
   children,
   className,
-  delay = 0,
+  index = 0,
 }: ScrollRevealItemProps) {
-  const ms = Math.round(delay * 1000);
-  const delayAttr =
-    ms <= 0 ? undefined :
-    ms <= 40 ? "40" :
-    ms <= 80 ? "80" :
-    ms <= 120 ? "120" :
-    ms <= 160 ? "160" :
-    "200";
-
   return (
-    <div
-      data-reveal
-      {...(delayAttr ? { "data-delay": delayAttr } : {})}
-      className={cn("transform-gpu", className)}
-    >
+    <TelvisCard className={className} index={index}>
       {children}
-    </div>
+    </TelvisCard>
   );
 }

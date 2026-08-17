@@ -11,7 +11,8 @@ export function Metrics() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Heading & Intro */}
-          <AutoScrollReveal className="lg:col-span-5 flex flex-col items-start">
+          <div className="lg:col-span-5 flex flex-col items-start">
+          <AutoScrollReveal asCards={false} className="flex flex-col items-start">
             <span className="text-xs font-bold uppercase tracking-wider text-[#E01E26] bg-red-50 px-3 py-1 rounded-full border border-red-100">
               System Performance
             </span>
@@ -22,11 +23,12 @@ export function Metrics() {
               Motion, layout, and typography stay 100% decoupled from specific brand colors. 
               The lightweight design tokens adapt effortlessly to any design system while guaranteeing 60 FPS interactions.
             </p>
-            <div className="mt-6 flex gap-3">
-              <Button variant="primary">Try Interactive CTA</Button>
-              <Button variant="outline">Outline Scale</Button>
-            </div>
           </AutoScrollReveal>
+          <div className="mt-6 flex gap-3">
+            <Button variant="primary">Try Interactive CTA</Button>
+            <Button variant="outline">Outline Scale</Button>
+          </div>
+          </div>
 
           {/* Right Column: Metrics Cards */}
           <AutoScrollReveal

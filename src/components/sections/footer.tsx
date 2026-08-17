@@ -3,79 +3,74 @@
 import React from "react";
 import Link from "next/link";
 import { B1GLogo } from "@/components/brand/b1g-logo";
-import { buildIntentWhatsAppUrl } from "@/lib/seo";
+import { ROUTES, buildIntentWhatsAppUrl } from "@/lib/seo";
+
+const navigationLinks = [
+  { name: "Home", href: ROUTES.home },
+  { name: "Subscription Plans", href: ROUTES.subscription },
+  { name: "Installation Guide", href: ROUTES.installation },
+  { name: "Supported Devices", href: ROUTES.devices },
+];
+
+const supportLinks = [
+  { name: "Contact Us", href: ROUTES.contact },
+  { name: "Reviews", href: ROUTES.reviews },
+  { name: "Reseller Panel", href: ROUTES.reseller },
+  { name: "About Us", href: ROUTES.about },
+];
+
+const legalLinks = [
+  { name: "Terms and Conditions", href: ROUTES.terms },
+  { name: "Privacy Policy", href: ROUTES.privacy },
+  { name: "Refund Policy", href: ROUTES.refund },
+  { name: "DMCA Policy", href: ROUTES.dmca },
+];
 
 export function B1GFooter() {
   return (
     <footer className="w-full bg-white border-t border-slate-200 py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        
-        {/* Top half: Logo & Links */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-100">
-          
-          {/* Brand block (spans 6 cols on desktop) */}
-          <div className="md:col-span-6 flex flex-col items-start gap-4">
+          <div className="md:col-span-4 flex flex-col items-start gap-4">
             <B1GLogo size="md" />
             <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed max-w-sm">
-              B1G Player is the official IPTV media application, providing a high-quality streaming interface for compatible Android and Fire TV platforms.
+              B1G Player is the viewing application used with an active B1G IPTV account on compatible Fire TV and Android devices, with guided setup support for UK customers.
             </p>
           </div>
 
-          {/* Links Block 1: Navigation (spans 3 cols) */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#12141F] mb-4">
               Navigation
             </h4>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/b1g-iptv-subscription/"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Subscription Plans
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/b1g-player-installation-guide/"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Installation Guide
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/#compatible-devices"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Supported Devices
-                </Link>
-              </li>
+              {navigationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Links Block 2: Support & Resellers (spans 3 cols) */}
           <div className="md:col-span-3">
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#12141F] mb-4">
               Support
             </h4>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/contact/"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </li>
+              {supportLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <a
                   href={buildIntentWhatsAppUrl("freeTrial")}
@@ -86,31 +81,38 @@ export function B1GFooter() {
                   Request a Free Trial
                 </a>
               </li>
-              <li>
-                <Link
-                  href="/b1g-player-reseller/"
-                  className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
-                >
-                  Reseller Panel
-                </Link>
-              </li>
             </ul>
           </div>
 
-        </div>
-
-        {/* Bottom half: Copyright & Disclaimer */}
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <p className="text-xs text-slate-400 font-semibold">
-              © {new Date().getFullYear()} B1G Player. All rights reserved.
-            </p>
-            <p className="text-[11px] text-slate-400 leading-relaxed max-w-4xl">
-              <strong>Disclaimer:</strong> B1G Player is an IPTV media player application. It does not own, host, distribute, or stream any digital audio/video media content. Users must supply their own playlist URL, login credentials, or active subscription supplied by their service provider to stream content.
-            </p>
+          <div className="md:col-span-3">
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#12141F] mb-4">
+              Legal
+            </h4>
+            <ul className="space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs sm:text-sm text-slate-500 hover:text-[#E01E26] font-semibold transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
+        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <p className="text-xs text-slate-400 font-semibold">
+              © {new Date().getFullYear()} B1G IPTV Players. All rights reserved.
+            </p>
+            <p className="text-[11px] text-slate-400 leading-relaxed max-w-4xl">
+              B1G Player is a viewing application. Installing the app does not provide an active catalogue. A B1G IPTV subscription supplies the private login details used with the application. Third-party trade marks belong to their owners and do not imply sponsorship or endorsement.
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );

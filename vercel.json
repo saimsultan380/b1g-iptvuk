@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.b1gplayer.uk" }],
-      "destination": "https://b1gplayer.uk/:path*",
+      "has": [{ "type": "host", "value": "www.b1giptvplayers.com" }],
+      "destination": "https://b1giptvplayers.com/:path*",
       "permanent": true
     }
   ]

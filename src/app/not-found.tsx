@@ -3,6 +3,7 @@ import Link from "next/link";
 import { B1GHeader } from "@/components/sections/b1g-header";
 import { B1GFooter } from "@/components/sections/footer";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: {
@@ -21,11 +22,12 @@ export const metadata: Metadata = {
 };
 
 const helpfulLinks = [
-  { name: "Home", href: "/" },
-  { name: "Subscription Plans", href: "/b1g-iptv-subscription/" },
-  { name: "Installation Guide", href: "/b1g-player-installation-guide/" },
-  { name: "Reseller Panel", href: "/b1g-player-reseller/" },
-  { name: "Contact Us", href: "/contact/" },
+  { name: "Home", href: ROUTES.home },
+  { name: "Subscription Plans", href: ROUTES.subscription },
+  { name: "Installation Guide", href: ROUTES.installation },
+  { name: "Supported Devices", href: ROUTES.devices },
+  { name: "Reseller Panel", href: ROUTES.reseller },
+  { name: "Contact Us", href: ROUTES.contact },
 ];
 
 export default function NotFound() {
@@ -55,7 +57,7 @@ export default function NotFound() {
                 Back to Home
               </Button>
             </Link>
-            <Link href="/contact/" className="w-full sm:w-auto">
+            <Link href={ROUTES.contact} className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 className="w-full h-[48px] rounded-[12px] px-8 text-sm font-semibold border-2 border-slate-200 text-[#12141F] hover:bg-slate-50"

@@ -6,12 +6,12 @@ import { FadeIn } from "@/components/animation/fade-in";
 
 export function B1GHeroMockup() {
   return (
-    <FadeIn delay={0.18} duration={0.5} yOffset={22} className="w-full">
+    <FadeIn trigger="mount" className="w-full">
       <div className="relative w-full max-w-2xl mx-auto lg:max-w-none py-2 flex items-center justify-center">
         <div className="relative w-full flex items-center justify-center">
           <Image
             src="/hero-image.PNG"
-            alt="B1G Player App Interface Preview"
+            alt="B1G Player app displayed on compatible television and mobile devices"
             width={1000}
             height={600}
             priority

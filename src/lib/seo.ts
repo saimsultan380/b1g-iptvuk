@@ -1,24 +1,42 @@
 import type { Metadata } from "next";
 
+/** Canonical production host — always non-www. */
+export const SITE_HOST = "b1giptvplayers.com";
+
 /** Canonical production origin — always non-www, no trailing slash on origin. */
-export const SITE_ORIGIN = "https://b1gplayer.uk";
+export const SITE_ORIGIN = `https://${SITE_HOST}`;
+
+/** Prefix so WhatsApp messages always name the current site, never a retired domain. */
+export const WHATSAPP_FROM_SITE = `Hi, I came from ${SITE_HOST}.`;
 
 export const SITE_NAME = "B1G Player";
 
 export const SITE_TITLE =
-  "B1G Player – Official IPTV App & B1G IPTV Subscription";
+  "B1G Player – IPTV App & B1G IPTV Subscription UK";
 
 export const SITE_DESCRIPTION =
-  "B1G Player is the official app for B1G IPTV subscriptions. Access live TV, sports, movies and series on supported Firestick and Android devices.";
+  "Install B1G Player on compatible Firestick and Android devices, compare B1G IPTV subscription plans from £10 and get clear UK setup support.";
 
 /** Canonical route paths (always trailing slash except homepage `/`). */
 export const ROUTES = {
   home: "/",
-  subscription: "/b1g-iptv-subscription/",
+  subscription: "/b1g-iptv-subscription-plans/",
   installation: "/b1g-player-installation-guide/",
-  reseller: "/b1g-player-reseller/",
-  contact: "/contact/",
+  devices: "/b1g-player-supported-devices/",
+  reviews: "/b1g-player-reviews/",
+  reseller: "/b1g-iptv-reseller-panel/",
+  contact: "/contact-us/",
+  about: "/about-us/",
+  terms: "/terms-and-conditions/",
+  privacy: "/privacy-policy/",
+  refund: "/refund-policy/",
+  dmca: "/dmca-policy/",
 } as const;
+
+export const LEGAL_UPDATED = "18 August 2026";
+
+export const SUPPORT_WHATSAPP_DISPLAY = "+44 7848 177296";
+export const TRADING_NAME = "B1G IPTV Players";
 
 /** Official support WhatsApp (E.164 without + for wa.me links). */
 export const WHATSAPP_NUMBER_E164 = "447848177296";
@@ -33,20 +51,19 @@ export function buildWhatsAppUrl(message?: string): string {
 
 /** Common short intents so the owner knows the source site + what the visitor wants. */
 export const WHATSAPP_INTENTS = {
-  freeTrial:
-    "Hi, I came from b1gplayer.uk. I want to start a free trial.",
-  getStarted:
-    "Hi, I came from b1gplayer.uk. I want to get started with B1G IPTV.",
-  buySubscription:
-    "Hi, I came from b1gplayer.uk. I want to buy a B1G IPTV subscription.",
-  support:
-    "Hi, I came from b1gplayer.uk. I need support with B1G Player.",
-  subscriptionSupport:
-    "Hi, I came from b1gplayer.uk. I need help with a B1G IPTV subscription.",
-  reseller:
-    "Hi, I came from b1gplayer.uk. I'm interested in becoming a reseller.",
-  contact:
-    "Hi, I came from b1gplayer.uk. I have an enquiry.",
+  freeTrial: `${WHATSAPP_FROM_SITE} I want to start a free trial.`,
+  getStarted: `${WHATSAPP_FROM_SITE} I want to get started with B1G IPTV.`,
+  buySubscription: `${WHATSAPP_FROM_SITE} I want to buy a B1G IPTV subscription.`,
+  support: `${WHATSAPP_FROM_SITE} I need support with B1G Player.`,
+  subscriptionSupport: `${WHATSAPP_FROM_SITE} I need help with a B1G IPTV subscription.`,
+  planQuestion: `${WHATSAPP_FROM_SITE} I have a question about B1G IPTV plans.`,
+  deviceCheck: `${WHATSAPP_FROM_SITE} I want to check whether my device is compatible.`,
+  setupSupport: `${WHATSAPP_FROM_SITE} I need setup support for B1G Player.`,
+  reseller: `${WHATSAPP_FROM_SITE} I'm interested in becoming a reseller.`,
+  contact: `${WHATSAPP_FROM_SITE} I have an enquiry.`,
+  refund: `${WHATSAPP_FROM_SITE} I would like to discuss a refund request.`,
+  copyright: `${WHATSAPP_FROM_SITE} I need to send a copyright or takedown notice.`,
+  privacy: `${WHATSAPP_FROM_SITE} I have a privacy enquiry.`,
 } as const;
 
 export type WhatsAppIntent = keyof typeof WHATSAPP_INTENTS;
@@ -58,7 +75,7 @@ export function buildIntentWhatsAppUrl(intent: WhatsAppIntent): string {
 /** Prefilled order message so the owner can see the source site + plan. */
 export function buildPlanWhatsAppUrl(planName: string, price: string): string {
   return buildWhatsAppUrl(
-    `Hi, I came from b1gplayer.uk. I want the ${planName} plan (${price}).`
+    `${WHATSAPP_FROM_SITE} I want the ${planName} plan (${price}).`
   );
 }
 
@@ -68,13 +85,17 @@ export function buildResellerPackageWhatsAppUrl(
   price: string
 ): string {
   return buildWhatsAppUrl(
-    `Hi, I came from b1gplayer.uk. I want the ${packageName} (${price}).`
+    `${WHATSAPP_FROM_SITE} I want the ${packageName} (${price}).`
   );
 }
+
+/** Other-site hosts that must never appear in this project's canonicals, sitemap or Open Graph. */
+const RETIRED_HOSTS = new Set(["b1gplayer.uk", "www.b1gplayer.uk"]);
 
 /**
  * Prefer explicit env in preview/staging; production always resolves to non-www.
  * Strips trailing slash and any accidental www. prefix from the origin.
+ * Maps retired domains to the current canonical host so leftover env cannot leak the old URL.
  */
 export function getSiteOrigin(): string {
   const raw =
@@ -87,8 +108,12 @@ export function getSiteOrigin(): string {
 
   try {
     const url = new URL(raw.startsWith("http") ? raw : `https://${raw}`);
-    if (url.hostname.startsWith("www.")) {
-      url.hostname = url.hostname.slice(4);
+    const hostname = url.hostname.toLowerCase();
+    if (RETIRED_HOSTS.has(hostname)) {
+      return SITE_ORIGIN;
+    }
+    if (hostname.startsWith("www.")) {
+      url.hostname = hostname.slice(4);
     }
     return url.origin;
   } catch {
@@ -174,7 +199,7 @@ export function buildPageMetadata({
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${SITE_NAME} – Official IPTV App`,
+          alt: "B1G Player app displayed on compatible television and mobile devices",
         },
       ],
     },
@@ -203,9 +228,9 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.subscription,
-    title: "B1G Player Subscription UK – B1G IPTV Plans & Trial",
+    title: "B1G IPTV Subscription UK – Plans, Prices & Trial",
     description:
-      "Compare B1G Player plans with a B1G IPTV subscription. Choose 1, 3, 6 or 12 months, get instant activation and receive setup support in the UK.",
+      "Compare B1G IPTV Subscription plans for 1, 3, 6 or 12 months, see what is included and request a device trial before ordering.",
     changeFrequency: "weekly" as const,
     priority: 0.9,
     breadcrumbs: [
@@ -215,9 +240,9 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.installation,
-    title: "B1G Player Installation Guide – Firestick & Android",
+    title: "B1G Player Installation Guide – Firestick, TV & Mobile",
     description:
-      "Install B1G Player on Firestick, Android TV, phones and tablets using Downloader code 4172090, then sign in with your B1G IPTV subscription details.",
+      "Install B1G Player on Firestick or Android and set up B1G IPTV on Samsung, LG, Apple, Windows and Mac devices.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
     breadcrumbs: [
@@ -226,10 +251,34 @@ export const SITE_PAGES = [
     ],
   },
   {
-    path: ROUTES.reseller,
-    title: "B1G Player Reseller UK – Panel, Credits & IPTV Plans",
+    path: ROUTES.devices,
+    title: "B1G Player Supported Devices – TV, Firestick & Mobile",
     description:
-      "Join the B1G Player reseller programme in the UK. Manage B1G IPTV subscriptions, customer accounts and credits through one organised reseller panel.",
+      "Check B1G Player compatibility with Firestick, Android TV, Smart TVs, Apple devices, Windows, Mac and other supported platforms.",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "Supported Devices", path: ROUTES.devices },
+    ],
+  },
+  {
+    path: ROUTES.reviews,
+    title: "B1G Player Reviews UK – Genuine Customer Feedback",
+    description:
+      "Read genuine B1G Player and B1G IPTV customer feedback, learn how reviews are checked and share an honest experience.",
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "Reviews", path: ROUTES.reviews },
+    ],
+  },
+  {
+    path: ROUTES.reseller,
+    title: "B1G IPTV Reseller Panel UK – Credits, Plans & Support",
+    description:
+      "Learn how the B1G IPTV Reseller Panel works, understand credits, reseller responsibilities, support and the application process.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
     breadcrumbs: [
@@ -239,9 +288,9 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.contact,
-    title: "Contact B1G Player – Free Trial, Setup & Subscription Help",
+    title: "B1G IPTV Free Trial – Contact B1G Player Support UK",
     description:
-      "Contact B1G Player for a free trial, B1G IPTV subscription advice, Firestick and Android setup help, renewals and reseller enquiries in the UK.",
+      "Request a B1G IPTV free trial or contact B1G Player about plans, devices, installation, login, renewal, refunds or reseller access.",
     changeFrequency: "monthly" as const,
     priority: 0.7,
     breadcrumbs: [
@@ -249,4 +298,68 @@ export const SITE_PAGES = [
       { name: "Contact Us", path: ROUTES.contact },
     ],
   },
+  {
+    path: ROUTES.about,
+    title: "About B1G IPTV Players – App, Setup & UK Support",
+    description:
+      "Learn how B1G IPTV Players explains subscriptions, B1G Player installation, supported devices and account support for UK customers.",
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "About Us", path: ROUTES.about },
+    ],
+  },
+  {
+    path: ROUTES.terms,
+    title: "Terms and Conditions – B1G IPTV Players",
+    description:
+      "Read the terms covering B1G IPTV subscriptions, trials, payments, account use, connections, support, cancellation and service changes.",
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "Terms and Conditions", path: ROUTES.terms },
+    ],
+  },
+  {
+    path: ROUTES.privacy,
+    title: "Privacy Policy – B1G IPTV Players",
+    description:
+      "Learn what information B1G IPTV Players collects, why it is used, who receives it, how long it is kept and your UK privacy rights.",
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "Privacy Policy", path: ROUTES.privacy },
+    ],
+  },
+  {
+    path: ROUTES.refund,
+    title: "Refund and Cancellation Policy – B1G IPTV Players",
+    description:
+      "Read how to request cancellation or a refund for B1G IPTV orders, including activation, service faults, compatibility and duplicate payments.",
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "Refund Policy", path: ROUTES.refund },
+    ],
+  },
+  {
+    path: ROUTES.dmca,
+    title: "DMCA and Copyright Policy – B1G IPTV Players",
+    description:
+      "Report allegedly infringing website material or service access and provide the details needed for a B1G IPTV copyright review.",
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+    breadcrumbs: [
+      { name: "Home", path: ROUTES.home },
+      { name: "DMCA Policy", path: ROUTES.dmca },
+    ],
+  },
 ] as const;
+
+export function getSitePage(path: string) {
+  return SITE_PAGES.find((page) => page.path === path);
+}

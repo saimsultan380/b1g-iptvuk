@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { ScrollReveal } from "@/components/animation/scroll-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   SITE_DESCRIPTION,
@@ -10,6 +9,7 @@ import {
   getSiteOrigin,
 } from "@/lib/seo";
 import { WhatsAppFloatingButton } from "@/components/ui/whatsapp-floating-button";
+import { ButtonClickSound } from "@/components/ui/button-click-sound";
 const siteOrigin = getSiteOrigin();
 
 export const metadata: Metadata = {
@@ -22,8 +22,9 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "B1G Player",
+    "B1G Player app",
     "B1G IPTV",
-    "IPTV app",
+    "B1G IPTV Subscription",
     "Firestick IPTV",
     "Android TV IPTV",
     "UK IPTV",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} – Official IPTV App`,
+          alt: "B1G Player app displayed on compatible television and mobile devices",
       },
     ],
   },
@@ -120,7 +121,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-[#12141F] selection:bg-[#E01E26] selection:text-white font-sans">
         <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
-        <ScrollReveal />
+        <ButtonClickSound />
         {children}
         <WhatsAppFloatingButton />
       </body>

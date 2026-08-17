@@ -1,7 +1,12 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import {
+  WHATSAPP_FROM_SITE,
   WHATSAPP_NUMBER_DISPLAY,
   buildWhatsAppUrl,
 } from "@/lib/seo";
+import { TELVIS_EASE } from "@/components/animation/telvis-motion";
 
 function WhatsAppGlyph({ className }: { className?: string }) {
   return (
@@ -20,19 +25,48 @@ function WhatsAppGlyph({ className }: { className?: string }) {
 }
 
 export function WhatsAppFloatingButton() {
-  const href = buildWhatsAppUrl("Hi, I came from b1gplayer.uk.");
+  const href = buildWhatsAppUrl(WHATSAPP_FROM_SITE);
+  const shouldReduceMotion = useReducedMotion();
+  const className =
+    "fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-[100] flex h-14 w-14 sm:h-[60px] sm:w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2";
+
+  const inner = (
+    <>
+      <WhatsAppGlyph className="h-7 w-7 sm:h-8 sm:w-8" />
+      <span className="sr-only">Chat on WhatsApp</span>
+    </>
+  );
+
+  if (shouldReduceMotion) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-click-sound
+        aria-label={`Chat on WhatsApp ${WHATSAPP_NUMBER_DISPLAY}`}
+        title={`WhatsApp ${WHATSAPP_NUMBER_DISPLAY}`}
+        className={className}
+      >
+        {inner}
+      </a>
+    );
+  }
 
   return (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      data-click-sound
       aria-label={`Chat on WhatsApp ${WHATSAPP_NUMBER_DISPLAY}`}
       title={`WhatsApp ${WHATSAPP_NUMBER_DISPLAY}`}
-      className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-[100] flex h-14 w-14 sm:h-[60px] sm:w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+      className={`telvis-motion-reveal ${className}`}
+      initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.52, ease: TELVIS_EASE }}
     >
-      <WhatsAppGlyph className="h-7 w-7 sm:h-8 sm:w-8" />
-      <span className="sr-only">Chat on WhatsApp</span>
-    </a>
+      {inner}
+    </motion.a>
   );
 }

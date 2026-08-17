@@ -2,173 +2,89 @@
 
 import React from "react";
 import { FadeIn } from "@/components/animation/fade-in";
+import { TelvisCard } from "@/components/animation/telvis-motion";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check } from "lucide-react";
+import { Calendar, ArrowUpRight } from "lucide-react";
 import { buildPlanWhatsAppUrl } from "@/lib/seo";
 
-interface PricingPlan {
-  id: string;
-  name: string;
-  price: string;
-  description: string;
-  ctaText: string;
-  isRecommended?: boolean;
-  features: string[];
-}
-
-const getFeaturesForMonths = (monthsText: string) => [
-  `${monthsText} of account access`,
-  "More than 35,000 live television channels",
-  "More than 50,000 movies",
-  "More than 10,000 television series",
-  "Sports and entertainment categories",
-  "Electronic Programme Guide",
-  "Catch-Up where available",
-  "HD, Full HD and 4K streams where supported",
-  "Official B1G Player App",
-  "Private username, password and server URL",
-  "Instant activation",
-  "UK customer assistance",
-];
-
-const pricingPlans: PricingPlan[] = [
+const plans = [
   {
-    id: "1-month",
-    name: "1 Month",
+    name: "One Month — £10",
     price: "£10",
-    description: "A flexible monthly option for new customers or viewers who prefer short-term access.",
-    ctaText: "Buy 1 Month",
-    features: getFeaturesForMonths("1 month"),
+    shortName: "1 Month",
+    description: "The shortest paid option for customers who prefer flexibility.",
+    cta: "Choose One Month",
   },
   {
-    id: "3-months",
-    name: "3 Months",
+    name: "Three Months — £20",
     price: "£20",
-    description: "Suitable for viewers who want a shorter subscription without renewing every month.",
-    ctaText: "Buy 3 Months",
-    features: getFeaturesForMonths("3 months"),
+    shortName: "3 Months",
+    description: "A shorter multi-month option with a lower effective cost.",
+    cta: "Choose Three Months",
   },
   {
-    id: "6-months",
-    name: "6 Months",
+    name: "Six Months — £30",
     price: "£30",
-    description: "A mid-length option for viewers looking for a balance between flexibility and value.",
-    ctaText: "Buy 6 Months",
-    features: getFeaturesForMonths("6 months"),
+    shortName: "6 Months",
+    description: "Suitable for regular customers who have already checked compatibility.",
+    cta: "Choose Six Months",
   },
   {
-    id: "12-months",
-    name: "12 Months + 1 Month Free",
+    name: "Twelve Months Plus One Month Free — £45",
     price: "£45",
-    description: "A longer-term package for regular viewers.",
-    ctaText: "Buy 12 Months + 1 Month Free",
-    isRecommended: true,
-    features: getFeaturesForMonths("13 months"),
+    shortName: "Annual Plan",
+    description: "The lowest effective monthly cost, providing thirteen months of account access.",
+    cta: "Choose the Annual Plan",
+    recommended: true,
   },
 ];
 
 export function SubPricing() {
   return (
-    <section
-      id="pricing-plans"
-      className="w-full py-12 sm:py-20 bg-white border-t border-slate-200"
-    >
+    <section id="pricing-plans" className="w-full py-12 sm:py-20 bg-white border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        
-        {/* Section Title */}
         <FadeIn className="w-full max-w-4xl mb-12">
           <h2 className="text-h2 font-bold tracking-tight text-[#12141F]">
-            Official B1G IPTV{" "}
-            <span className="text-brand-gradient font-bold">Subscription Plans</span>
+            Choose a <span className="text-brand-gradient font-bold">Duration</span>
           </h2>
         </FadeIn>
 
-        {/* Pricing Cards Grid */}
-        <FadeIn className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full">
-            {pricingPlans.map((plan) => (
-              <div
-                key={plan.id}
-                className={`relative flex flex-col justify-between rounded-[12px] border bg-white p-6 transition-all duration-200 ${
-                  plan.isRecommended
-                    ? "border-[#E01E26] ring-1 ring-[#E01E26]"
-                    : "border-slate-200"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-4 xl:gap-5 items-stretch">
+            {plans.map((plan, index) => (
+              <TelvisCard
+                key={plan.name}
+                index={index}
+                className={`rounded-[12px] border bg-white p-5 sm:p-6 lg:p-5 xl:p-6 flex min-w-0 flex-col justify-between ${
+                  plan.recommended ? "border-[#E01E26]" : "border-slate-200"
                 }`}
               >
-                {/* Recommended Badge */}
-                {plan.isRecommended && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-[#E01E26] to-[#EE2830] text-[10px] font-bold text-white uppercase tracking-wider">
-                    Recommended
-                  </span>
-                )}
-
                 <div>
-                  {/* Plan Name */}
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar
-                      className={`h-4 w-4 shrink-0 ${
-                        plan.isRecommended ? "text-[#E01E26]" : "text-slate-400"
-                      }`}
-                    />
-                    <h3 className="text-sm font-bold text-[#12141F] tracking-wide uppercase">
-                      {plan.name}
-                    </h3>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-[10px] mb-4 bg-red-50 text-[#E01E26]">
+                    <Calendar className="h-5 w-5 stroke-[2]" />
                   </div>
-
-                  {/* Plan Price */}
-                  <div className="flex items-baseline gap-1.5 mb-3">
-                    <span className="font-heading text-[42px] leading-none sm:text-3xl font-extrabold text-[#12141F] tracking-tight">
-                      {plan.price}
-                    </span>
-                  </div>
-
-                  {/* Plan Description */}
-                  <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed mb-6">
+                  <h3 className="text-base sm:text-lg lg:text-[15px] xl:text-base font-bold text-[#12141F] mb-2 leading-snug">
+                    {plan.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm lg:text-xs xl:text-sm text-slate-500 font-semibold leading-relaxed mb-6">
                     {plan.description}
                   </p>
-
-                  {/* Features List */}
-                  <ul className="space-y-3 mb-8 border-t border-slate-100 pt-5">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span
-                          className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${
-                            plan.isRecommended
-                              ? "bg-red-50 text-[#E01E26]"
-                              : "bg-slate-50 text-slate-400"
-                          }`}
-                        >
-                          <Check className="h-2.5 w-2.5 stroke-[3]" />
-                        </span>
-                        <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-
-                {/* CTA Button — opens WhatsApp with plan + site source */}
                 <a
-                  href={buildPlanWhatsAppUrl(plan.name, plan.price)}
+                  href={buildPlanWhatsAppUrl(plan.shortName, plan.price)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full"
                 >
                   <Button
                     variant="primary"
-                    size="lg"
-                    className="w-full rounded-[12px] py-3.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white hover:opacity-95 shadow-none border-0"
+                    className="w-full justify-between rounded-[12px] font-bold text-[11px] sm:text-xs py-3 px-3 xl:px-4 flex items-center gap-2 bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"
                   >
-                    {plan.ctaText}
+                    <span className="text-left leading-tight">{plan.cta}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 stroke-[2.5]" />
                   </Button>
                 </a>
-
-              </div>
+              </TelvisCard>
             ))}
           </div>
-        </FadeIn>
-
       </div>
     </section>
   );

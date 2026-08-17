@@ -3,7 +3,7 @@
 import React from "react";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, HelpCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { buildIntentWhatsAppUrl } from "@/lib/seo";
 
 const trialChecks = [

@@ -1,30 +1,56 @@
 import type { NextConfig } from "next";
 
-const CANONICAL_ORIGIN = "https://b1gplayer.uk";
+const CANONICAL_ORIGIN = "https://b1giptvplayers.com";
 
 const nextConfig: NextConfig = {
-  // Enforce trailing slashes site-wide (routes, Link, and metadata canonicals)
   trailingSlash: true,
 
   async redirects() {
     return [
-      // WWW → non-WWW (permanent). Covers all routes including dynamic paths.
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.b1gplayer.uk" }],
+        has: [{ type: "host", value: "www.b1giptvplayers.com" }],
         destination: `${CANONICAL_ORIGIN}/:path*`,
         permanent: true,
       },
-
-      // Old route slugs → client-approved canonical URLs
+      {
+        source: "/b1g-iptv-subscription",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv-subscription/",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-player-reseller",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-player-reseller/",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
+      {
+        source: "/contact",
+        destination: "/contact-us/",
+        permanent: true,
+      },
+      {
+        source: "/contact/",
+        destination: "/contact-us/",
+        permanent: true,
+      },
       {
         source: "/subscription-plan",
-        destination: "/b1g-iptv-subscription/",
+        destination: "/b1g-iptv-subscription-plans/",
         permanent: true,
       },
       {
         source: "/subscription-plan/",
-        destination: "/b1g-iptv-subscription/",
+        destination: "/b1g-iptv-subscription-plans/",
         permanent: true,
       },
       {
@@ -39,16 +65,14 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/reseller-panel",
-        destination: "/b1g-player-reseller/",
+        destination: "/b1g-iptv-reseller-panel/",
         permanent: true,
       },
       {
         source: "/reseller-panel/",
-        destination: "/b1g-player-reseller/",
+        destination: "/b1g-iptv-reseller-panel/",
         permanent: true,
       },
-
-      // Legacy / broken paths → canonical pages
       {
         source: "/setup-instructions",
         destination: "/b1g-player-installation-guide/",
@@ -61,12 +85,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/compare-plans",
-        destination: "/b1g-iptv-subscription/",
+        destination: "/b1g-iptv-subscription-plans/",
         permanent: true,
       },
       {
         source: "/compare-plans/",
-        destination: "/b1g-iptv-subscription/",
+        destination: "/b1g-iptv-subscription-plans/",
         permanent: true,
       },
     ];

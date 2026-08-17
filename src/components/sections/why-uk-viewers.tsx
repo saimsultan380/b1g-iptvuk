@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
+import { TelvisCard } from "@/components/animation/telvis-motion";
 import { Button } from "@/components/ui/button";
 import { buildIntentWhatsAppUrl } from "@/lib/seo";
 import {
@@ -87,8 +88,7 @@ export function WhyUKViewers() {
         </FadeIn>
 
         {/* ── ROW 1: Content Stats + Categories ── */}
-        <FadeIn className="w-full mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-4 w-full items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-4 w-full items-stretch mb-8">
 
             {/* LEFT Heading: occupying 4 cols on desktop */}
             <div className="lg:col-span-4">
@@ -105,10 +105,9 @@ export function WhyUKViewers() {
               {contentStats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
-                  <div
-                    key={idx}
-                    data-reveal
-                    data-delay={String(idx * 100)}
+                  <TelvisCard
+                    key={stat.label}
+                    index={idx}
                     className="flex items-center gap-4 rounded-[12px] border border-slate-200 bg-white p-4"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-red-50 text-[#E01E26]">
@@ -122,19 +121,19 @@ export function WhyUKViewers() {
                         {stat.label}
                       </p>
                     </div>
-                  </div>
+                  </TelvisCard>
                 );
               })}
             </div>
 
             {/* RIGHT: Categories Box */}
-            <div className="lg:col-span-8 flex flex-col">
+            <TelvisCard index={3} className="lg:col-span-8 flex flex-col">
               <div className="rounded-[12px] border border-slate-200 bg-white p-6 sm:p-7 flex flex-col justify-between flex-1 h-full">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3 w-full">
-                  {contentCategories.map((cat, idx) => {
+                  {contentCategories.map((cat) => {
                     const Icon = cat.icon;
                     return (
-                      <li key={idx} data-reveal data-delay={String((idx % 3) * 50)} className="flex items-center gap-2">
+                      <li key={cat.label} className="flex items-center gap-2">
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-red-50 text-[#E01E26]">
                           <Icon className="h-3.5 w-3.5 stroke-[2]" />
                         </div>
@@ -151,17 +150,14 @@ export function WhyUKViewers() {
                   </p>
                 </div>
               </div>
-            </div>
+            </TelvisCard>
 
           </div>
-        </FadeIn>
 
-        {/* ── ROW 2: Instant Activation | Official App | UK Support ── */}
-        <FadeIn className="w-full mb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch w-full mb-8">
 
             {/* Card 1: Instant Account Activation */}
-            <div className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
+            <TelvisCard index={0} className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-red-50 text-[#E01E26]">
                   <Zap className="h-4.5 w-4.5 stroke-[2]" />
@@ -188,10 +184,10 @@ export function WhyUKViewers() {
                   );
                 })}
               </ul>
-            </div>
+            </TelvisCard>
 
             {/* Card 2: Official App Access */}
-            <div className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
+            <TelvisCard index={1} className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-red-50 text-[#E01E26]">
                   <ShieldCheck className="h-4.5 w-4.5 stroke-[2]" />
@@ -203,10 +199,10 @@ export function WhyUKViewers() {
               <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed flex-1">
                 Every active B1G IPTV subscription includes access to the B1G Player app for supported Android and Fire TV devices. The app provides a clean, dedicated interface that keeps your account information and available content in one place — no switching between external players.
               </p>
-            </div>
+            </TelvisCard>
 
             {/* Card 3: UK Customer Assistance */}
-            <div className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
+            <TelvisCard index={2} className="rounded-[12px] border border-slate-200 bg-white p-6 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-red-50 text-[#E01E26]">
                   <HeadphonesIcon className="h-4.5 w-4.5 stroke-[2]" />
@@ -243,10 +239,9 @@ export function WhyUKViewers() {
                   <ArrowRight className="ml-2 h-3.5 w-3.5 stroke-[2.5]" />
                 </Button>
               </a>
-            </div>
+            </TelvisCard>
 
           </div>
-        </FadeIn>
 
       </div>
     </section>

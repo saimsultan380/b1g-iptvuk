@@ -1,21 +1,20 @@
 import React from "react";
 import { B1GHeader } from "@/components/sections/b1g-header";
 import { SubHero } from "@/components/subscription/sub-hero";
-import { SubConsiderations } from "@/components/subscription/sub-considerations";
-import { SubPricing } from "@/components/subscription/sub-pricing";
 import { SubCompare } from "@/components/subscription/sub-compare";
+import { SubPricing } from "@/components/subscription/sub-pricing";
 import { SubFeatures } from "@/components/subscription/sub-features";
-import { SubAppAccess } from "@/components/subscription/sub-app-access";
+import { SubConnection } from "@/components/subscription/sub-connection";
 import { SubActivationSteps } from "@/components/subscription/sub-activation-steps";
-import { SubTrial } from "@/components/subscription/sub-trial";
+import { SubConsiderations } from "@/components/subscription/sub-considerations";
 import { SubRenew } from "@/components/subscription/sub-renew";
 import { SubFAQ } from "@/components/subscription/sub-faq";
 import { SubCTA } from "@/components/subscription/sub-cta";
 import { B1GFooter } from "@/components/sections/footer";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
-import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
+import { buildPageMetadata, getSitePage, ROUTES } from "@/lib/seo";
 
-const page = SITE_PAGES.find((p) => p.path === "/b1g-iptv-subscription/")!;
+const page = getSitePage(ROUTES.subscription)!;
 
 export const metadata = buildPageMetadata({
   title: page.title,
@@ -30,13 +29,12 @@ export default function SubscriptionPlansPage() {
       <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <SubHero />
-      <SubConsiderations />
-      <SubPricing />
       <SubCompare />
+      <SubPricing />
       <SubFeatures />
-      <SubAppAccess />
+      <SubConnection />
       <SubActivationSteps />
-      <SubTrial />
+      <SubConsiderations />
       <SubRenew />
       <SubFAQ />
       <SubCTA />

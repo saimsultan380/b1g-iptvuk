@@ -1,56 +1,44 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import React from "react";
+import { TelvisHero, TelvisReveal, type SectionPreset } from "@/components/animation/telvis-motion";
 
 interface FadeInProps {
   children: React.ReactNode;
-  /** Delay in seconds before the enter animation starts */
   delay?: number;
-  /** Duration in seconds */
   duration?: number;
   className?: string;
   once?: boolean;
-  /** Vertical offset in px (positive = rises up into place) */
   yOffset?: number;
+  /** mount = hero load-in; inView = scroll sections */
+  trigger?: "mount" | "inView";
+  preset?: SectionPreset | "hero" | "heroCta";
 }
 
 /**
- * Mount fade/slide enter — CSS-only, for hero description & images on load.
- * Does not use scroll observers (avoids blank-until-scroll).
+ * Telvis blur-reveal: hero mount or scroll-in section animation.
  */
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.45,
   className,
-  yOffset = 18,
+  trigger = "inView",
+  preset,
 }: FadeInProps) {
-  const [active, setActive] = useState(false);
+  if (trigger === "mount" || preset === "hero" || preset === "heroCta") {
+    return (
+      <TelvisHero className={className} delay={delay} cta={preset === "heroCta"}>
+        {children}
+      </TelvisHero>
+    );
+  }
 
-  useEffect(() => {
-    let raf2 = 0;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setActive(true));
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
-    };
-  }, []);
+  const sectionPreset: SectionPreset =
+    preset === "cta" || preset === "media" || preset === "text" ? preset : "text";
 
   return (
-    <div
-      className={cn("hero-enter", active && "hero-enter--active", className)}
-      style={
-        {
-          "--hero-enter-delay": `${Math.round(delay * 1000)}ms`,
-          "--hero-enter-duration": `${Math.round(duration * 1000)}ms`,
-          "--hero-enter-y": `${yOffset}px`,
-        } as React.CSSProperties
-      }
-    >
+    <TelvisReveal className={className} delay={delay} preset={sectionPreset}>
       {children}
-    </div>
+    </TelvisReveal>
   );
 }

@@ -1,21 +1,18 @@
 import React from "react";
 import { B1GHeader } from "@/components/sections/b1g-header";
 import { ResHero } from "@/components/reseller/res-hero";
-import { ResIntro } from "@/components/reseller/res-intro";
-import { ResBenefits } from "@/components/reseller/res-benefits";
 import { ResFeatures } from "@/components/reseller/res-features";
 import { ResCreditsWork } from "@/components/reseller/res-credits-work";
-import { ResPackages } from "@/components/reseller/res-packages";
-import { ResActivation } from "@/components/reseller/res-activation";
-import { ResSupport } from "@/components/reseller/res-support";
 import { ResResponsibilities } from "@/components/reseller/res-responsibilities";
-import { ResFAQ } from "@/components/reseller/res-faq";
+import { ResSupport } from "@/components/reseller/res-support";
+import { ResGuarantee } from "@/components/reseller/res-guarantee";
+import { ResApply } from "@/components/reseller/res-apply";
 import { ResCTA } from "@/components/reseller/res-cta";
 import { B1GFooter } from "@/components/sections/footer";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
-import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
+import { buildPageMetadata, getSitePage, ROUTES } from "@/lib/seo";
 
-const page = SITE_PAGES.find((p) => p.path === "/b1g-player-reseller/")!;
+const page = getSitePage(ROUTES.reseller)!;
 
 export const metadata = buildPageMetadata({
   title: page.title,
@@ -30,15 +27,12 @@ export default function ResellerPanelPage() {
       <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
 
       <ResHero />
-      <ResIntro />
-      <ResBenefits />
       <ResFeatures />
       <ResCreditsWork />
-      <ResPackages />
-      <ResActivation />
-      <ResSupport />
       <ResResponsibilities />
-      <ResFAQ />
+      <ResSupport />
+      <ResGuarantee />
+      <ResApply />
       <ResCTA />
       <B1GFooter />
     </main>

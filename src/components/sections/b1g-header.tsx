@@ -6,14 +6,15 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { buildIntentWhatsAppUrl } from "@/lib/seo";
+import { TelvisNativeButton } from "@/components/animation/telvis-motion";
+import { ROUTES, buildIntentWhatsAppUrl } from "@/lib/seo";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Installation Guide", href: "/b1g-player-installation-guide/" },
-  { name: "Subscription Plans", href: "/b1g-iptv-subscription/" },
-  { name: "Reseller Panel", href: "/b1g-player-reseller/" },
-  { name: "Contact Us", href: "/contact/" },
+  { name: "Home", href: ROUTES.home },
+  { name: "Installation Guide", href: ROUTES.installation },
+  { name: "Subscription Plans", href: ROUTES.subscription },
+  { name: "Reseller Panel", href: ROUTES.reseller },
+  { name: "Contact Us", href: ROUTES.contact },
 ];
 
 /** Shared frosted-glass surface — desktop header + mobile navbar use the exact same look */
@@ -89,6 +90,7 @@ export function B1GHeader() {
           >
             <Button
               variant="primary"
+              reveal="hero"
               className="h-[44px] px-6 rounded-[12px] text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white whitespace-nowrap"
             >
               Get Started
@@ -121,8 +123,9 @@ export function B1GHeader() {
               </div>
             </Link>
 
-            <button
+            <TelvisNativeButton
               type="button"
+              kind="hero"
               onClick={toggleMobileMenu}
               className="p-2 text-slate-800 focus:outline-none"
               aria-label="Toggle Navigation Menu"
@@ -133,7 +136,7 @@ export function B1GHeader() {
               ) : (
                 <Menu className="h-6 w-6" />
               )}
-            </button>
+            </TelvisNativeButton>
           </div>
 
           {/* Overlay panel — frosted glass, does not affect document flow / hero position */}
@@ -170,6 +173,7 @@ export function B1GHeader() {
                     >
                       <Button
                         variant="primary"
+                        reveal="hero"
                         className="w-full h-[48px] rounded-[12px] text-base font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"
                       >
                         Get Started

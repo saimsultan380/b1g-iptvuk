@@ -1,17 +1,17 @@
 import React from "react";
 import { B1GHeader } from "@/components/sections/b1g-header";
 import { ConHero } from "@/components/contact/con-hero";
-import { ConHelpOptions } from "@/components/contact/con-help-options";
+import { ConTrialTest } from "@/components/contact/con-trial-test";
+import { ConInfoLimits } from "@/components/contact/con-info-limits";
+import { ConDetails } from "@/components/contact/con-details";
 import { ConForm } from "@/components/contact/con-form";
-import { ConWhatToInclude } from "@/components/contact/con-what-to-include";
-import { ConReseller } from "@/components/contact/con-reseller";
-import { ConFAQ } from "@/components/contact/con-faq";
 import { ConCTA } from "@/components/contact/con-cta";
 import { B1GFooter } from "@/components/sections/footer";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
-import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { buildPageMetadata, getSitePage, ROUTES, absoluteUrl } from "@/lib/seo";
 
-const page = SITE_PAGES.find((p) => p.path === "/contact/")!;
+const page = getSitePage(ROUTES.contact)!;
 
 export const metadata = buildPageMetadata({
   title: page.title,
@@ -19,18 +19,26 @@ export const metadata = buildPageMetadata({
   path: page.path,
 });
 
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: page.title,
+  description: page.description,
+  url: absoluteUrl(page.path),
+};
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white">
       <B1GHeader />
       <BreadcrumbJsonLd items={[...page.breadcrumbs]} />
+      <JsonLd data={contactJsonLd} />
 
       <ConHero />
-      <ConHelpOptions />
+      <ConTrialTest />
+      <ConInfoLimits />
+      <ConDetails />
       <ConForm />
-      <ConWhatToInclude />
-      <ConReseller />
-      <ConFAQ />
       <ConCTA />
       <B1GFooter />
     </main>

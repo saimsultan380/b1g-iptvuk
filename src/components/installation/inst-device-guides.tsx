@@ -2,18 +2,19 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { FadeIn } from "@/components/animation/fade-in";
 import {
   Tv,
   Monitor,
   Smartphone,
-  Tablet,
   Laptop,
   Cast,
   Download,
   AlertTriangle,
   ChevronRight,
+  TabletSmartphone,
 } from "lucide-react";
+import { FadeIn } from "@/components/animation/fade-in";
+import { TelvisNativeButton } from "@/components/animation/telvis-motion";
 
 interface DeviceGuide {
   id: string;
@@ -22,225 +23,167 @@ interface DeviceGuide {
   title: string;
   subtitle: string;
   showDownloaderCode?: boolean;
-  steps: {
-    title: string;
-    description: string;
-  }[];
+  steps: { title: string; description: string }[];
   notes?: string[];
 }
 
 const deviceGuidesList: DeviceGuide[] = [
   {
     id: "firestick",
-    name: "Amazon Firestick & Fire TV",
+    name: "Firestick and Fire TV",
     icon: Cast,
-    title: "How to Install B1G Player on Firestick",
-    subtitle: "Amazon Firestick remains one of the most popular devices for IPTV media player installation.",
+    title: "Install B1G Player on Firestick or Fire TV",
+    subtitle: "Device menus vary by Fire OS version.",
     showDownloaderCode: true,
     steps: [
-      {
-        title: "Install Downloader",
-        description: "From the Firestick home screen: Open Find. Select Search. Enter Downloader. Choose the Downloader app by AFTVnews. Select Download. Wait for installation. Open Downloader.",
-      },
-      {
-        title: "Enable Installation Permission",
-        description: "Open Settings → My Fire TV → Developer Options → Install Unknown Apps. Enable Downloader. If Developer Options are hidden: Open Settings. Choose My Fire TV. Open About. Highlight the device name. Press the select button several times. Return to My Fire TV. Open Developer Options.",
-      },
-      {
-        title: "Enter the Code",
-        description: "Open Downloader and enter the official Downloader Code: 4172090. Select Go. Confirm that the page displays the official B1G Player app before downloading.",
-      },
-      {
-        title: "Install the App",
-        description: "When the file has downloaded: Select Install. Wait for completion. Select Done or Open. Delete the APK file if you want to recover storage space.",
-      },
-      {
-        title: "Add App to Home Screen",
-        description: "Open your applications. Highlight B1G Player. Press the menu button. Select Move to Front.",
-      },
-      {
-        title: "Sign In",
-        description: "Open the app and enter your username, password and server URL exactly as supplied with your active subscription. Select login or add account. Allow the categories to load completely.",
-      },
+      { title: "Open Find or Search", description: "Open Find or Search on the Fire TV home screen." },
+      { title: "Install Downloader", description: "Search for Downloader by AFTVnews. Install and open Downloader." },
+      { title: "Allow unknown apps", description: "Where supported, allow Downloader under Install Unknown Apps." },
+      { title: "Enter the code", description: "Enter verified Downloader code 4172090." },
+      { title: "Confirm B1G Player", description: "Confirm the destination identifies B1G Player." },
+      { title: "Download and install", description: "Download the APK and select Install." },
+      { title: "Open and sign in", description: "Open B1G Player. Delete the downloaded installer to recover storage. Enter the username, password and server address." },
+      { title: "Allow the first update", description: "Allow the initial catalogue and EPG update to finish." },
+    ],
+    notes: [
+      "Verify code 4172090 before every new installation. If it opens an unexpected page, stop and contact support.",
+      "Some newer or restricted devices may not permit third-party installations.",
     ],
   },
   {
     id: "android-tv",
-    name: "Android TV & Android Boxes",
+    name: "Android TV and boxes",
     icon: Tv,
-    title: "How to Install B1G Player on Android TV & Boxes",
-    subtitle: "Use Downloader or a compatible installation method.",
+    title: "Install B1G Player on Android TV or Android Box",
+    subtitle: "Use Downloader by AFTVnews and the verified B1G Player code.",
     showDownloaderCode: true,
     steps: [
-      {
-        title: "Install Downloader",
-        description: "Download and install Downloader from the Google Play Store.",
-      },
-      {
-        title: "Enter Downloader Code",
-        description: "Enter: 4172090.",
-      },
-      {
-        title: "Install B1G Player",
-        description: "Download the application file, allow install permissions when prompted, and complete the installation.",
-      },
-      {
-        title: "Sign In",
-        description: "Launch the app and enter your username, password and server URL.",
-      },
+      { title: "Update the device", description: "Update the Android device and check available storage." },
+      { title: "Install Downloader", description: "Use the Play Store to install Downloader by AFTVnews." },
+      { title: "Install B1G Player", description: "Download and install B1G Player using code 4172090." },
+      { title: "Sign in", description: "Open the application, enter the account details and allow the first update to complete." },
     ],
     notes: [
-      "Menu names differ between television manufacturers and Android versions.",
+      "Avoid unbranded low-powered boxes where possible. A device can technically install the app but still struggle with a large catalogue.",
     ],
   },
   {
-    id: "android-phone",
-    name: "Android Smartphones & Tablets",
+    id: "android-mobile",
+    name: "Android phone or tablet",
     icon: Smartphone,
-    title: "Android Phone and Tablet Setup",
-    subtitle: "Quickly set up B1G Player on your mobile Android devices.",
+    title: "Install on Android Phone or Tablet",
+    subtitle: "Use the same verified Downloader route as other Android devices.",
+    showDownloaderCode: true,
     steps: [
-      {
-        title: "Download the APK",
-        description: "Open the official download link (http://aftv.news/4172090) through your mobile browser. Download the B1G Player APK.",
-      },
-      {
-        title: "Allow Permissions & Install",
-        description: "Open the completed download file. Allow installation from the browser or file manager if prompted. Select Install.",
-      },
-      {
-        title: "Sign In & Load",
-        description: "Open B1G Player. Enter your B1G IPTV login information (username, password, server URL). Wait for the categories to load.",
-      },
-    ],
-    notes: [
-      "Android may display a security warning because the application is being installed outside the Play Store. Continue only when the file came from the official source.",
+      { title: "Update the device", description: "Update the Android device and check available storage." },
+      { title: "Install Downloader", description: "Use the Play Store to install Downloader by AFTVnews." },
+      { title: "Install B1G Player", description: "Download and install B1G Player using code 4172090." },
+      { title: "Sign in", description: "Open the application, enter the account details and allow the first update to complete." },
     ],
   },
   {
-    id: "samsung-tv",
-    name: "Samsung Smart TVs",
+    id: "samsung",
+    name: "Samsung Smart TV",
     icon: Tv,
-    title: "Samsung Smart TV Setup",
-    subtitle: "Samsung televisions do not normally run the Android version of B1G Player. Install a compatible alternative player.",
+    title: "Set Up B1G IPTV on Samsung Smart TV",
+    subtitle: "Samsung televisions normally use Tizen rather than Android.",
     steps: [
-      {
-        title: "Select an IPTV App",
-        description: "Open the Samsung App Store. Search for and install a compatible player app. Possible options include: IBO Player, SmartOne IPTV, CR7 Player, or other Xtream Codes-compatible players.",
-      },
-      {
-        title: "Enter Login Credentials",
-        description: "Open the app. Choose Xtream Codes or the supported login method. Enter your username, password, and the server URL exactly as supplied.",
-      },
-      {
-        title: "Save & Reload",
-        description: "Save the profile. Restart the application to load the available channel listings.",
-      },
+      { title: "Open the Samsung app store", description: "Search for a compatible IPTV player, for example CR7 Player, IBO Player/Pro, Hot IPTV or Smart One." },
+      { title: "Check the developer", description: "Check the developer and any separate fee." },
+      { title: "Install and open", description: "Install and open the application." },
+      { title: "Add the account", description: "Select Add User, Add Playlist or Xtream Codes API. Enter a profile name, username, password and the complete server address." },
+      { title: "Save and load", description: "Save the profile and allow the catalogue and EPG to load." },
     ],
     notes: [
-      "Some third-party applications require a separate activation payment. These charges are set by the application developer and are not included with your B1G IPTV subscription.",
+      "Some applications use a device ID or MAC address and require separate activation through the player developer’s genuine website.",
     ],
   },
   {
-    id: "lg-tv",
-    name: "LG Smart TVs",
-    icon: Tv,
-    title: "LG Smart TV Setup",
-    subtitle: "LG televisions use applications available through the LG Content Store.",
+    id: "lg",
+    name: "LG Smart TV",
+    icon: Monitor,
+    title: "Set Up B1G IPTV on LG Smart TV",
+    subtitle: "LG televisions normally use webOS.",
     steps: [
-      {
-        title: "Install Compatible Player",
-        description: "Open the LG Content Store. Search for and install a compatible player. Options include IBO Player, SmartOne IPTV, CR7 Player, or other compatible players.",
-      },
-      {
-        title: "Configure Xtream Codes",
-        description: "Open the player. Select Xtream Codes API or M3U. Enter the account information (username, password, and server URL).",
-      },
-      {
-        title: "Save & Launch",
-        description: "Save the profile. Restart the application and allow the available categories to load.",
-      },
+      { title: "Open the LG Content Store", description: "Find a compatible webOS player, for example CR7 Player, IBO Player/Pro, Hot IPTV or Smart One." },
+      { title: "Review the app", description: "Review its app information and fee." },
+      { title: "Install and open", description: "Install and open it." },
+      { title: "Add the account", description: "Choose Xtream Codes or M3U, enter the account details and save the profile." },
+      { title: "Wait for the update", description: "Wait for the first catalogue update." },
     ],
     notes: [
-      "Availability depends on television model, webOS version and country.",
-      "Third-party applications may require a separate developer activation fee.",
+      "The third-party application charge is separate from the B1G IPTV Subscription.",
+    ],
+  },
+  {
+    id: "ios",
+    name: "iPhone or iPad",
+    icon: TabletSmartphone,
+    title: "Set Up on iPhone or iPad",
+    subtitle: "Use a compatible App Store player supporting Xtream Codes or M3U.",
+    steps: [
+      { title: "Open the App Store", description: "Choose a compatible player supporting Xtream Codes or M3U, for example iPlayTV AIO, IBO Player Pro or GSE Smart IPTV." },
+      { title: "Review the app", description: "Review the developer, privacy information and app fee." },
+      { title: "Install and add the account", description: "Install and open it. Add a new account and enter the supplied details." },
+      { title: "Save and update", description: "Save the profile and allow the categories to update." },
+    ],
+    notes: [
+      "Do not install an Android APK or unknown configuration profile on an Apple device.",
     ],
   },
   {
     id: "apple-tv",
-    name: "Apple TV Setup",
+    name: "Apple TV",
     icon: Cast,
-    title: "Apple TV Setup",
-    subtitle: "Apple TV users need a compatible application from the Apple App Store.",
+    title: "Set Up on Apple TV",
+    subtitle: "Install a compatible player from the Apple TV App Store.",
     steps: [
-      {
-        title: "Install a Player",
-        description: "Open the Apple App Store. Install a compatible player. Possible players include: IBO Player Pro, VU IPTV Player, or other supported tvOS applications.",
-      },
-      {
-        title: "Log In using Xtream Codes",
-        description: "Open the app. Select the supported login method. Enter the username, password, and server URL. Save the account details.",
-      },
+      { title: "Install a compatible player", description: "Install a compatible player from the Apple TV App Store, for example iPlayTV AIO, IBO Player Pro or GSE Smart IPTV." },
+      { title: "Choose the login method", description: "Open the application and choose the supported login method." },
+      { title: "Enter the account", description: "Enter the account directly or use the player developer’s genuine device-linking page." },
+      { title: "Save and refresh", description: "Save the profile, return to Apple TV and refresh the account." },
     ],
     notes: [
-      "The official Android B1G Player APK cannot be installed on Apple TV.",
+      "Entering long URLs using a television remote can cause typing errors. Check every character.",
     ],
   },
   {
-    id: "ios-devices",
-    name: "iPhone & iPad Setup",
-    icon: Smartphone,
-    title: "iPhone and iPad Setup",
-    subtitle: "Use a compatible IPTV player from the Apple App Store.",
-    steps: [
-      {
-        title: "Install Compatible App",
-        description: "Search the App Store for supported players. Possible options include: iPlayTV AIO, VU IPTV Player, IBO Player Pro, or other compatible iOS apps.",
-      },
-      {
-        title: "Configure Credentials",
-        description: "Open the app. Enter the B1G IPTV subscription details (username, password, server URL) supplied after activation.",
-      },
-    ],
-    notes: [
-      "Some third-party applications may charge a separate developer fee.",
-    ],
-  },
-  {
-    id: "windows-pc",
-    name: "Windows PCs",
+    id: "windows",
+    name: "Windows",
     icon: Monitor,
-    title: "Windows Setup",
-    subtitle: "Use a compatible IPTV player for Windows.",
+    title: "Set Up on Windows",
+    subtitle: "Choose a reputable compatible desktop player from the Microsoft Store.",
     steps: [
-      {
-        title: "Install Player",
-        description: "Open the Microsoft Store or trusted developer source. Install a supported player.",
-      },
-      {
-        title: "Sign In",
-        description: "Open the app. Choose Xtream Codes or M3U login. Enter the supplied details. Save the profile and allow the categories to load.",
-      },
-    ],
-    notes: [
-      "Do not install applications from unknown download pages.",
+      { title: "Choose a player", description: "Choose a reputable compatible desktop player, for example IPTV Smarters Expert or IBO Player." },
+      { title: "Download from the Microsoft Store", description: "Download it from the Microsoft Store. Avoid modified installers and unofficial codec packs." },
+      { title: "Install and sign in", description: "Install and open the player. Choose Xtream Codes or M3U, enter the account details and save the profile." },
+      { title: "Test playback", description: "Test live and on-demand playback." },
     ],
   },
   {
-    id: "mac-computer",
-    name: "Mac Computers",
+    id: "mac",
+    name: "Mac",
     icon: Laptop,
-    title: "Mac Setup",
-    subtitle: "Mac users can install a compatible player through the Mac App Store or a trusted developer source.",
+    title: "Set Up on Mac",
+    subtitle: "Find a player compatible with the Mac’s operating system and processor.",
     steps: [
-      {
-        title: "Install Supported Client",
-        description: "Open the Mac App Store or download a compatible IPTV player from a trusted developer source. Install the application.",
-      },
-      {
-        title: "Configure Account",
-        description: "Open the application. Select the supported login method (Xtream Codes API or M3U). Enter the username, password, and server URL. Save the profile and wait for loading to complete.",
-      },
+      { title: "Download from an official source", description: "Download it from the App Store or official publisher." },
+      { title: "Install and add the account", description: "Install and open it, then add the B1G IPTV account." },
+      { title: "Allow the update", description: "Allow the initial update to complete." },
+      { title: "Test playback", description: "Test audio, subtitles and full-screen playback." },
+    ],
+  },
+  {
+    id: "mag",
+    name: "MAG or portal device",
+    icon: Tv,
+    title: "MAG and Portal Devices",
+    subtitle: "Use this method only if support confirms the exact device and portal format.",
+    steps: [
+      { title: "Contact support first", description: "Support may require the device model, MAC address, portal address, account duration and connection allowance." },
+    ],
+    notes: [
+      "Never send the device identifier publicly.",
     ],
   },
 ];
@@ -248,17 +191,13 @@ const deviceGuidesList: DeviceGuide[] = [
 export function InstDeviceGuides() {
   const [activeTab, setActiveTab] = useState("firestick");
   const contentRef = useRef<HTMLDivElement>(null);
-
   const activeGuide = deviceGuidesList.find((g) => g.id === activeTab) || deviceGuidesList[0];
 
   const handleTabClick = (id: string) => {
     setActiveTab(id);
-    
-    // Smoothly scroll down to the content pane on smaller screen sizes
     setTimeout(() => {
       if (contentRef.current) {
-        const yOffset = -80; // Offset to keep it below our sticky header bar
-        const y = contentRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const y = contentRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }, 100);
@@ -267,39 +206,39 @@ export function InstDeviceGuides() {
   return (
     <section
       id="device-guides"
-      className="w-full py-12 sm:py-20 bg-slate-50/50 border-t border-slate-200"
+      data-no-reveal
+      className="w-full py-12 sm:py-20 bg-white border-t border-slate-200"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        
-        {/* Unified Grid Layout for both Mobile and Desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full">
-          
-          {/* Left Column Sidebar (lg:col-span-4) - Full Width Menu on Mobile */}
           <div className="lg:col-span-4 flex flex-col gap-6 bg-white border border-slate-200 rounded-[12px] p-6 lg:sticky lg:top-24">
             <div>
-              <span className="text-[11px] font-bold text-[#E01E26] uppercase tracking-wider block mb-1">
-                Installation Guide
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#12141F] mb-1 font-heading">
-                Supported Devices for B1G Player
-              </h2>
-              <p className="text-xs text-slate-500 font-semibold mb-6">
-                B1G Player supports a wide range of devices.
-              </p>
-
-              {/* Device Tabs Menu */}
+              <FadeIn>
+                <span className="text-[11px] font-bold text-[#E01E26] uppercase tracking-wider block mb-1">
+                  Installation Guide
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-[#12141F] mb-1 font-heading">
+                  Device setup methods
+                </h2>
+                <p className="text-xs text-slate-500 font-semibold mb-6">
+                  Choose the method written for your device.
+                </p>
+              </FadeIn>
               <div className="flex flex-col gap-2.5">
-                {deviceGuidesList.map((device) => {
+                {deviceGuidesList.map((device, index) => {
                   const Icon = device.icon;
                   const isActive = activeTab === device.id;
                   return (
-                    <button
+                    <TelvisNativeButton
                       key={device.id}
+                      type="button"
+                      kind="card"
+                      index={index}
                       onClick={() => handleTabClick(device.id)}
-                      className={`w-full flex items-center justify-between text-left px-4 py-3 rounded-[12px] border transition-all duration-200 focus:outline-none ${
+                      className={`w-full flex items-center justify-between text-left px-4 py-3 rounded-[12px] border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E01E26]/30 ${
                         isActive
-                          ? "border-[#E01E26] bg-red-50/30 text-[#E01E26]"
-                          : "border-transparent bg-white hover:bg-slate-50 text-slate-700"
+                          ? "border-[#E01E26] bg-red-50 text-[#E01E26]"
+                          : "border-transparent bg-white hover:bg-slate-50 text-[#12141F]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -308,42 +247,40 @@ export function InstDeviceGuides() {
                             isActive ? "bg-red-100 text-[#E01E26]" : "bg-slate-100 text-slate-400"
                           }`}
                         >
-                          <Icon className="h-4.5 w-4.5 stroke-[2]" />
+                          <Icon className="h-4 w-4 stroke-[2]" />
                         </div>
-                        <span className="text-xs sm:text-sm font-bold tracking-tight">
+                        <span
+                          className={`text-xs sm:text-sm font-bold tracking-tight ${
+                            isActive ? "text-[#E01E26]" : "text-[#12141F]"
+                          }`}
+                        >
                           {device.name}
                         </span>
                       </div>
                       <ChevronRight
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          isActive ? "text-[#E01E26] translate-x-0.5" : "text-slate-300"
-                        }`}
+                        className={`h-4 w-4 ${isActive ? "text-[#E01E26]" : "text-slate-300"}`}
                       />
-                    </button>
+                    </TelvisNativeButton>
                   );
                 })}
               </div>
             </div>
           </div>
 
-          {/* Right Column Content Pane (lg:col-span-8) - Rendered directly below on Mobile */}
+          <FadeIn preset="media" className="lg:col-span-8">
           <div
             ref={contentRef}
-            className="lg:col-span-8 rounded-[12px] border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between min-h-[600px] relative scroll-mt-24"
+            className="rounded-[12px] border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between min-h-[600px] scroll-mt-24"
           >
-            
             <div>
-              {/* Header Title */}
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#12141F] mb-3 font-heading">
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#12141F] mb-3 font-heading">
                 {activeGuide.title}
-              </h2>
+              </h3>
               <p className="text-xs sm:text-sm text-slate-500 font-semibold mb-6 leading-relaxed max-w-2xl">
                 {activeGuide.subtitle}
               </p>
-
-              {/* Tag box for Downloader Code if applicable */}
               {activeGuide.showDownloaderCode && (
-                <div className="inline-flex items-center gap-3 p-3 rounded-[12px] border border-red-100 bg-red-50/50 mb-6 select-none">
+                <div className="inline-flex items-center gap-3 p-3 rounded-[12px] border border-red-100 bg-red-50/50 mb-6">
                   <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#E01E26] text-white">
                     <Download className="h-3.5 w-3.5" />
                   </div>
@@ -351,37 +288,28 @@ export function InstDeviceGuides() {
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block leading-none mb-0.5">
                       Downloader Code
                     </span>
-                    <span className="text-sm font-extrabold text-[#E01E26] leading-none">
-                      4172090
-                    </span>
+                    <span className="text-sm font-extrabold text-[#E01E26] leading-none">4172090</span>
                   </div>
                 </div>
               )}
-
-              {/* Devices Mockup Image (matches provided screenshot 2) */}
-              <div className="relative w-full max-w-md mx-auto my-8 select-none flex items-center justify-center">
+              <div className="relative w-full max-w-md mx-auto my-8 flex items-center justify-center">
                 <Image
                   src="/hero-image.PNG"
-                  alt="B1G Player Supported Devices mockup"
+                  alt="B1G Player app displayed on compatible television and mobile devices"
                   width={500}
                   height={300}
-                  priority
                   className="w-full h-auto object-contain"
                 />
               </div>
-
-              {/* Numbered Steps */}
               <ol className="space-y-6 relative border-l-2 border-slate-100 pl-6 ml-3">
                 {activeGuide.steps.map((step, idx) => (
-                  <li key={idx} className="relative">
-                    {/* Circle number */}
+                  <li key={step.title} className="relative">
                     <span className="absolute -left-[37px] top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-red-50 border border-red-100 text-[#E01E26] font-bold text-xs">
                       {idx + 1}
                     </span>
-                    
-                    <h3 className="text-xs sm:text-sm font-bold text-[#12141F] mb-1.5 leading-snug">
+                    <h4 className="text-xs sm:text-sm font-bold text-[#12141F] mb-1.5 leading-snug">
                       {step.title}
-                    </h3>
+                    </h4>
                     <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed">
                       {step.description}
                     </p>
@@ -389,25 +317,19 @@ export function InstDeviceGuides() {
                 ))}
               </ol>
             </div>
-
-            {/* Note box footer if applicable */}
             {activeGuide.notes && activeGuide.notes.length > 0 && (
               <div className="border-t border-slate-100 pt-5 mt-8 space-y-2">
-                {activeGuide.notes.map((note, idx) => (
-                  <div key={idx} className="flex items-start gap-2">
+                {activeGuide.notes.map((note) => (
+                  <div key={note} className="flex items-start gap-2">
                     <AlertTriangle className="h-4 w-4 text-[#E01E26] shrink-0 mt-0.5" />
-                    <p className="text-xs text-slate-500 font-semibold leading-relaxed">
-                      {note}
-                    </p>
+                    <p className="text-xs text-slate-500 font-semibold leading-relaxed">{note}</p>
                   </div>
                 ))}
               </div>
             )}
-
           </div>
-
+          </FadeIn>
         </div>
-
       </div>
     </section>
   );

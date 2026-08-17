@@ -4,6 +4,7 @@ import React from "react";
 import { B1GHeroContent, B1GHeroCTAs } from "./b1g-hero-content";
 import { B1GHeroMockup } from "./b1g-hero-mockup";
 import { B1GTrustRow } from "./b1g-trust-row";
+import { FadeIn } from "@/components/animation/fade-in";
 
 export function B1GHeroSection() {
   return (
@@ -19,7 +20,9 @@ export function B1GHeroSection() {
             </div>
 
             <div className="mt-10 w-full max-w-xl">
-              <B1GTrustRow />
+              <FadeIn trigger="mount">
+                <B1GTrustRow />
+              </FadeIn>
             </div>
           </div>
 
@@ -43,7 +46,9 @@ export function B1GHeroSection() {
           </div>
 
           <div className="w-full mt-2">
-            <B1GTrustRow />
+            <FadeIn trigger="mount">
+              <B1GTrustRow />
+            </FadeIn>
           </div>
         </div>
       </div>

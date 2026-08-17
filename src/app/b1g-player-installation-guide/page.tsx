@@ -2,18 +2,19 @@ import React from "react";
 import { B1GHeader } from "@/components/sections/b1g-header";
 import { InstHero } from "@/components/installation/inst-hero";
 import { InstBeforeBegin } from "@/components/installation/inst-before-begin";
-import { InstDownloaderInfo } from "@/components/installation/inst-downloader-info";
+import { InstLoginDetails } from "@/components/installation/inst-login-details";
+import { InstQuickRoute } from "@/components/installation/inst-quick-route";
 import { InstDeviceGuides } from "@/components/installation/inst-device-guides";
-import { InstSecureLogin } from "@/components/installation/inst-secure-login";
-import { InstUsageGuide } from "@/components/installation/inst-usage-guide";
+import { InstFirstSignIn } from "@/components/installation/inst-first-signin";
 import { InstTroubleshooting } from "@/components/installation/inst-troubleshooting";
+import { InstSafety } from "@/components/installation/inst-safety";
 import { InstFAQ } from "@/components/installation/inst-faq";
 import { InstCTA } from "@/components/installation/inst-cta";
 import { B1GFooter } from "@/components/sections/footer";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
-import { buildPageMetadata, SITE_PAGES } from "@/lib/seo";
+import { buildPageMetadata, getSitePage, ROUTES } from "@/lib/seo";
 
-const page = SITE_PAGES.find((p) => p.path === "/b1g-player-installation-guide/")!;
+const page = getSitePage(ROUTES.installation)!;
 
 export const metadata = buildPageMetadata({
   title: page.title,
@@ -29,11 +30,12 @@ export default function InstallationGuidePage() {
 
       <InstHero />
       <InstBeforeBegin />
-      <InstDownloaderInfo />
+      <InstLoginDetails />
+      <InstQuickRoute />
       <InstDeviceGuides />
-      <InstSecureLogin />
-      <InstUsageGuide />
+      <InstFirstSignIn />
       <InstTroubleshooting />
+      <InstSafety />
       <InstFAQ />
       <InstCTA />
       <B1GFooter />
