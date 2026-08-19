@@ -202,15 +202,51 @@ const nextConfig: NextConfig = {
       // /b1g-iptv (old WP slug) → new canonical homepage
       // Note: /b1g-iptv-uk is now a real page — no redirect needed
 
-      // /buy-now → /b1g-iptv-subscription-plans (WP indexed page)
+      // /buy-now → /b1g-player-subscription-plans (WP indexed page)
       {
         source: "/buy-now",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: "/b1g-player-subscription-plans/",
         permanent: true,
       },
       {
         source: "/buy-now/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: "/b1g-player-subscription-plans/",
+        permanent: true,
+      },
+
+      // /b1g-iptv-reviews → /b1g-player-reviews
+      {
+        source: "/b1g-iptv-reviews",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv-reviews/",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+
+      // /b1g-iptv-subscription-plans → /b1g-player-subscription-plans (new canonical)
+      {
+        source: "/b1g-iptv-subscription-plans",
+        destination: "/b1g-player-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv-subscription-plans/",
+        destination: "/b1g-player-subscription-plans/",
+        permanent: true,
+      },
+
+      // /b1g-iptv-subscription-plans-uk → /b1g-player-subscription-plans (WP final indexed URL)
+      {
+        source: "/b1g-iptv-subscription-plans-uk",
+        destination: "/b1g-player-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv-subscription-plans-uk/",
+        destination: "/b1g-player-subscription-plans/",
         permanent: true,
       },
     ];
