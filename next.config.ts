@@ -13,6 +13,13 @@ const nextConfig: NextConfig = {
         destination: `${CANONICAL_ORIGIN}/:path*`,
         permanent: true,
       },
+
+      // Root → new canonical homepage
+      {
+        source: "/",
+        destination: "/b1g-iptv-uk/",
+        permanent: true,
+      },
       {
         source: "/b1g-iptv-subscription",
         destination: "/b1g-iptv-subscription-plans/",
@@ -192,17 +199,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /b1g-iptv-uk → / (homepage) — WP "new URL" that has no Next.js page
-      {
-        source: "/b1g-iptv-uk",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/b1g-iptv-uk/",
-        destination: "/",
-        permanent: true,
-      },
+      // /b1g-iptv (old WP slug) → new canonical homepage
+      // Note: /b1g-iptv-uk is now a real page — no redirect needed
     ];
   },
 };
