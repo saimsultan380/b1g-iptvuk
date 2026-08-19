@@ -191,6 +191,18 @@ const nextConfig: NextConfig = {
         destination: "/b1g-iptv-reseller-panel/",
         permanent: true,
       },
+
+      // /b1g-iptv-uk → / (homepage) — WP "new URL" that has no Next.js page
+      {
+        source: "/b1g-iptv-uk",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv-uk/",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
