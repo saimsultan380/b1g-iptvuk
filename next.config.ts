@@ -201,6 +201,18 @@ const nextConfig: NextConfig = {
 
       // /b1g-iptv (old WP slug) → new canonical homepage
       // Note: /b1g-iptv-uk is now a real page — no redirect needed
+
+      // /buy-now → /b1g-iptv-subscription-plans (WP indexed page)
+      {
+        source: "/buy-now",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/buy-now/",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
     ];
   },
 };
