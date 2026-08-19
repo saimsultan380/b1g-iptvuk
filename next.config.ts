@@ -93,6 +93,104 @@ const nextConfig: NextConfig = {
         destination: "/b1g-iptv-subscription-plans/",
         permanent: true,
       },
+
+      // ── WordPress Migration Redirects ──────────────────────────────────
+
+      // /our-plans → /b1g-iptv-subscription-plans
+      {
+        source: "/our-plans",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/our-plans/",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+
+      // /reviews-what-our-customers-say → /b1g-player-reviews
+      {
+        source: "/reviews-what-our-customers-say",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+      {
+        source: "/reviews-what-our-customers-say/",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+
+      // /iptv-reseller-panel-2026 → /b1g-iptv-reseller-panel
+      {
+        source: "/iptv-reseller-panel-2026",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
+      {
+        source: "/iptv-reseller-panel-2026/",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
+
+      // /troubleshooting-fix-b1g-iptv-issues → /b1g-player-installation-guide
+      {
+        source: "/troubleshooting-fix-b1g-iptv-issues",
+        destination: "/b1g-player-installation-guide/",
+        permanent: true,
+      },
+      {
+        source: "/troubleshooting-fix-b1g-iptv-issues/",
+        destination: "/b1g-player-installation-guide/",
+        permanent: true,
+      },
+
+      // /subscription-plans → /b1g-iptv-subscription-plans
+      {
+        source: "/subscription-plans",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+      {
+        source: "/subscription-plans/",
+        destination: "/b1g-iptv-subscription-plans/",
+        permanent: true,
+      },
+
+      // /iptv-reviews → /b1g-player-reviews
+      {
+        source: "/iptv-reviews",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+      {
+        source: "/iptv-reviews/",
+        destination: "/b1g-player-reviews/",
+        permanent: true,
+      },
+
+      // /b1g-iptv → / (homepage)
+      {
+        source: "/b1g-iptv",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/b1g-iptv/",
+        destination: "/",
+        permanent: true,
+      },
+
+      // /reseller-panel → /iptv-reseller-panel
+      {
+        source: "/iptv-reseller-panel",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
+      {
+        source: "/iptv-reseller-panel/",
+        destination: "/b1g-iptv-reseller-panel/",
+        permanent: true,
+      },
     ];
   },
 };
