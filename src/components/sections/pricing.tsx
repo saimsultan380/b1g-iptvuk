@@ -63,7 +63,7 @@ const pricingPlans: PricingPlan[] = [
   },
   {
     id: "12-months",
-    name: "12 Months + 1 Month Free",
+    name: "12 Months + 1 Free",
     price: "£45",
     period: "total",
     description: "Our best long-term value, providing a full year of access plus one additional month at no extra cost.",
@@ -100,7 +100,7 @@ export function B1GPricing() {
           </h2>
           <div className="mt-4 space-y-3 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
             <p>
-              Every standard plan includes one active connection, private login details, the same core catalogue and setup guidance. The main difference is the subscription duration and effective monthly cost.
+              Select the B1G Player Subscription UK from our plans. Every standard plan includes one active connection, private login details, the same core catalogue, and setup guidance. The main difference is the subscription duration and effective monthly cost.
             </p>
           </div>
         </FadeIn>
@@ -179,10 +179,7 @@ export function B1GPricing() {
         <div className="w-full rounded-[12px] border border-slate-200 bg-white p-5 sm:p-7 flex flex-col gap-4">
             <FadeIn>
               <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
-                All prices displayed above are total package prices, not recurring monthly charges. Every B1G IPTV Subscription includes the same catalogue, app access and core service features. Only the subscription duration and total price change.
-              </p>
-              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed mt-3">
-                One active stream is included unless your order states otherwise. HD, Full HD and 4K quality, EPG information and Catch-Up availability can vary according to the selected channel, programme, device and internet connection. Any separate fee charged by an optional third-party player or app store is not included in the subscription price.
+                All prices displayed above are total package prices, not recurring monthly charges. Every B1G IPTV Subscription includes the same catalogue, app access, and core service features. Only the subscription duration and total price change.
               </p>
             </FadeIn>
             <Link href={ROUTES.subscription} className="shrink-0 w-full md:w-auto self-start">
@@ -191,7 +188,7 @@ export function B1GPricing() {
                 size="lg"
                 className="w-full md:w-auto rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] px-5 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold hover:bg-red-50"
               >
-                <span>Compare all B1G IPTV subscription plans</span>
+                <span>Compare All B1G IPTV Subscription Plans</span>
                 <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
               </Button>
             </Link>

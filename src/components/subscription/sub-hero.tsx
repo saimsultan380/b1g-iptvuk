@@ -9,11 +9,11 @@ export function SubHero() {
   return (
     <PageHero
       titleParts={[
-        { text: "B1G IPTV Subscription Plans and Prices" },
+        { text: "Compare B1G Player Subscription Plans" },
         { text: "in the UK", className: "text-brand-gradient font-bold" },
       ]}
       paragraphs={[
-        "Choose one, three, six or twelve months. Every standard B1G IPTV Subscription includes the same core service, one active connection, private account details and setup guidance.",
+        "Compare B1G Player subscription plans for UK customers. Choose 1, 3, 6 or 12 months, review current prices and connection limits, and check device compatibility before ordering. A short trial may be available for eligible new customers.",
       ]}
       primaryCta={{
         href: buildIntentWhatsAppUrl("freeTrial"),

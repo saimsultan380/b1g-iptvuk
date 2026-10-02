@@ -5,7 +5,8 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TITLE,
-  absoluteUrl,
+  buildOrganizationJsonLd,
+  buildWebsiteJsonLd,
   getSiteOrigin,
 } from "@/lib/seo";
 import { WhatsAppFloatingButton } from "@/components/ui/whatsapp-floating-button";
@@ -85,28 +86,8 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE_NAME,
-  url: absoluteUrl("/"),
-  logo: absoluteUrl("/icons/icon-512.png"),
-  image: absoluteUrl("/og-image.png"),
-  description: SITE_DESCRIPTION,
-};
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE_NAME,
-  url: absoluteUrl("/"),
-  description: SITE_DESCRIPTION,
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: absoluteUrl("/"),
-  },
-};
+const organizationJsonLd = buildOrganizationJsonLd();
+const websiteJsonLd = buildWebsiteJsonLd();
 
 export default function RootLayout({
   children,

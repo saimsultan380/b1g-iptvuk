@@ -10,11 +10,10 @@ export function ConHero() {
     <PageHero
       titleParts={[
         { text: "Contact B1G Player for a" },
-        { text: "Free Trial and Support", className: "text-brand-gradient font-bold" },
+        { text: "UK Trial and Subscription Help", className: "text-brand-gradient font-bold" },
       ]}
       paragraphs={[
-        "Request a short B1G IPTV Free Trial to check your device, player and internet connection before choosing a longer subscription.",
-        "Trial availability, duration, connection allowance and any catalogue restrictions will be confirmed before activation.",
+        "Contact B1G Player support to request a UK trial, compare subscription options, confirm device compatibility or ask for help with installation, activation, login problems, renewals, refunds and reseller access.",
       ]}
       primaryCta={{
         href: "#trial-form",
@@ -23,7 +22,7 @@ export function ConHero() {
       }}
       secondaryCta={{
         href: ROUTES.subscription,
-        label: "View B1G IPTV Plans",
+        label: "Compare B1G Player Plans",
         icon: Calendar,
       }}
       trustItems={[

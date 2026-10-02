@@ -10,42 +10,30 @@ export function B1GHeroSection() {
   return (
     <div className="relative bg-white text-[#12141F] flex flex-col pb-8 sm:pb-12" data-hero>
       <div className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-14">
-        {/* DESKTOP */}
-        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
-          <div className="lg:col-span-6 flex flex-col items-start">
+        <div className="grid lg:grid-cols-12 lg:gap-12 lg:items-center">
+          <div className="lg:col-span-6 flex flex-col items-start order-1">
             <B1GHeroContent showFullBodyCopy={true} />
 
-            <div className="mt-8 w-full">
+            <div className="mt-8 w-full hidden lg:block">
               <B1GHeroCTAs />
             </div>
 
-            <div className="mt-10 w-full max-w-xl">
+            <div className="mt-10 w-full max-w-xl hidden lg:block">
               <FadeIn trigger="mount">
                 <B1GTrustRow />
               </FadeIn>
             </div>
           </div>
 
-          <div className="lg:col-span-6">
-            <B1GHeroMockup />
-          </div>
-        </div>
-
-        {/* MOBILE */}
-        <div className="flex lg:hidden flex-col items-center gap-5 text-left">
-          <div className="w-full">
-            <B1GHeroContent showFullBodyCopy={true} />
-          </div>
-
-          <div className="w-full my-1">
+          <div className="lg:col-span-6 order-2 my-1 lg:my-0">
             <B1GHeroMockup />
           </div>
 
-          <div className="w-full">
+          <div className="order-3 w-full lg:hidden">
             <B1GHeroCTAs />
           </div>
 
-          <div className="w-full mt-2">
+          <div className="order-4 w-full mt-2 lg:hidden">
             <FadeIn trigger="mount">
               <B1GTrustRow />
             </FadeIn>

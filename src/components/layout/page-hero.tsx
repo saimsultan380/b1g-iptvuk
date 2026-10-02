@@ -106,8 +106,8 @@ export function PageHero({
   return (
     <div className="relative bg-white text-[#12141F] flex flex-col pb-8 sm:pb-12" data-hero>
       <div className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-14">
-        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
-          <div className="lg:col-span-6 flex flex-col items-start">
+        <div className="grid lg:grid-cols-12 lg:gap-12 lg:items-center">
+          <div className="lg:col-span-6 flex flex-col items-start order-1">
             <div className="flex flex-col items-start text-left w-full">
               <div className="w-full" data-no-reveal>
                 <MaskReveal
@@ -126,50 +126,26 @@ export function PageHero({
               </FadeIn>
             </div>
 
-            <div className="mt-8 flex flex-row items-center gap-2 sm:gap-4 w-full">
+            <div className="mt-8 hidden lg:flex flex-row items-center gap-2 sm:gap-4 w-full">
               <HeroCtaButton cta={primaryCta} variant="primary" />
               <HeroCtaButton cta={secondaryCta} variant="outline" />
             </div>
 
-            <FadeIn trigger="mount" className="mt-10 w-full max-w-xl">
+            <FadeIn trigger="mount" className="mt-10 w-full max-w-xl hidden lg:block">
               <TrustRow items={trustItems} />
             </FadeIn>
           </div>
 
-          <div className="lg:col-span-6">
-            <B1GHeroMockup />
-          </div>
-        </div>
-
-        <div className="flex lg:hidden flex-col items-center gap-6 text-left">
-          <div className="flex flex-col items-start text-left w-full">
-            <div className="w-full" data-no-reveal>
-              <MaskReveal
-                trigger="mount"
-                as="h1"
-                className="text-h1-b1g leading-[1.15] font-bold tracking-tight"
-                parts={titleParts}
-              />
-            </div>
-            <FadeIn trigger="mount" className="w-full">
-              <div className="mt-4 space-y-3 text-xs sm:text-sm text-black leading-relaxed">
-                {paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
-
-          <div className="w-full my-2">
+          <div className="lg:col-span-6 order-2 my-2 lg:my-0">
             <B1GHeroMockup />
           </div>
 
-          <div className="flex flex-col gap-3 w-full">
+          <div className="order-3 lg:hidden flex flex-col gap-3 w-full">
             <HeroCtaButton cta={primaryCta} variant="primary" />
             <HeroCtaButton cta={secondaryCta} variant="outline" />
           </div>
 
-          <FadeIn trigger="mount" className="w-full mt-2">
+          <FadeIn trigger="mount" className="order-4 lg:hidden w-full mt-2">
             <TrustRow items={trustItems} compact />
           </FadeIn>
         </div>

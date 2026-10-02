@@ -49,7 +49,7 @@ export default function NotFound() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-12">
-            <Link href="/" className="w-full sm:w-auto">
+            <Link href={ROUTES.home} className="w-full sm:w-auto">
               <Button
                 variant="primary"
                 className="w-full h-[48px] rounded-[12px] px-8 text-sm font-semibold bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white"

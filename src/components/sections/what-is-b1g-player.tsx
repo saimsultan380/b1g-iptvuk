@@ -42,7 +42,10 @@ export function WhatIsB1GPlayer() {
               B1G Player is the viewing application used to access and organise an active B1G IPTV account on compatible Fire TV and Android devices.
             </p>
             <p>
-              After activation, customers enter the username, password and server address supplied with their account. B1G Player then organises the available live channels, films, TV series and programme information into separate sections.
+              If you have searched for “b1gplayer”, “big player”, “B1G TV” or “B1GTV”, these terms can refer to searches for the B1G Player experience. The important distinction is that B1G Player is the application, while the B1G IPTV Subscription provides the account access.
+            </p>
+            <p>
+              After activation, customers enter the username, password, and server address supplied with their account. B1G Player then organises the available live channels, films, TV series and programme information into separate sections.
             </p>
           </div>
         </FadeIn>
@@ -70,24 +73,27 @@ export function WhatIsB1GPlayer() {
           </div>
         </FadeIn>
 
-        <div className="w-full rounded-[12px] border border-slate-200 bg-white p-5 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <FadeIn className="max-w-2xl">
-              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
-                B1G Player is the application, while B1G IPTV is the subscription account. Installing the app alone does not provide an active catalogue, and purchasing a subscription does not automatically install the app on a device. Customers using Samsung, LG, Apple, Windows or Mac devices normally access the same subscription through a compatible third-party player.
-              </p>
-            </FadeIn>
+        <div className="w-full rounded-[12px] border border-slate-200 bg-white p-5 sm:p-7 flex flex-col gap-4">
+          <FadeIn className="max-w-4xl space-y-3">
+            <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
+              B1G Player is the application, while B1G IPTV is the subscription account. Installing the app alone does not provide an active catalogue, and purchasing a subscription does not automatically install the app on a device. Customers using Samsung, LG, Apple, Windows or Mac devices normally access the same subscription through a compatible third-party player.
+            </p>
+            <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
+              This distinction is also useful if you are searching for a B1G APK. An APK is an Android application package, so the correct installation method depends on the device you are using. Do not install an Android APK on an incompatible operating system.
+            </p>
+          </FadeIn>
 
-            <Link href={ROUTES.installation} className="shrink-0 w-full md:w-auto">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full md:w-auto rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold"
-              >
-                <span>Open the Installation Guide</span>
-                <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
-              </Button>
-            </Link>
-          </div>
+          <Link href={ROUTES.installation} className="shrink-0 w-full md:w-auto self-start">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full md:w-auto rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold"
+            >
+              <span>Open Installation Guide</span>
+              <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );

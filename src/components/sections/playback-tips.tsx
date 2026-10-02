@@ -42,7 +42,7 @@ export function PlaybackTips() {
             <span className="text-brand-gradient font-bold">Playback</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
-            Available resolutions can include SD, HD, Full HD and selected 4K sources. Actual playback depends on:
+            Available resolutions can include SD, HD, Full HD, and selected 4K sources. Actual playback depends on:
           </p>
         </FadeIn>
 

@@ -6,7 +6,7 @@ import { Calendar, Wrench, MonitorSmartphone, KeyRound } from "lucide-react";
 const trustItems = [
   { icon: Calendar, label: "Flexible plans" },
   { icon: Wrench, label: "Guided installation" },
-  { icon: MonitorSmartphone, label: "Compatible-device support" },
+  { icon: MonitorSmartphone, label: "Compatible device support" },
   { icon: KeyRound, label: "Private account access" },
 ];
 

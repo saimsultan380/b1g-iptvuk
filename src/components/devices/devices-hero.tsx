@@ -9,12 +9,11 @@ export function DevicesHero() {
   return (
     <PageHero
       titleParts={[
-        { text: "B1G Player Supported Devices" },
-        { text: "and Compatibility", className: "text-brand-gradient font-bold" },
+        { text: "Which Devices Support" },
+        { text: "B1G Player?", className: "text-brand-gradient font-bold" },
       ]}
       paragraphs={[
-        "B1G Player works directly on compatible Fire TV and Android devices. Samsung, LG, Apple, Windows and Mac users normally add their B1G IPTV account to a compatible third-party player.",
-        "Check the exact device model and operating system before ordering.",
+        "Check which devices can run B1G Player directly and which require a compatible alternative player. Review support for Firestick, Android TV, Smart TVs, Apple devices, Windows and Mac before choosing a subscription.",
       ]}
       primaryCta={{
         href: buildIntentWhatsAppUrl("deviceCheck"),
@@ -24,7 +23,7 @@ export function DevicesHero() {
       }}
       secondaryCta={{
         href: ROUTES.installation,
-        label: "Open Installation Guide",
+        label: "Open Setup Guide",
         icon: Download,
       }}
       trustItems={[

@@ -18,7 +18,7 @@ export function B1GCTABanner() {
               <span className="text-brand-gradient font-bold">Device and Plan</span>
             </h2>
             <p className="text-xs sm:text-sm lg:text-base text-slate-500 font-semibold leading-relaxed max-w-3xl mb-8">
-              Check your device, test the setup where necessary and select the shortest subscription duration you are comfortable with.
+              Check your device first, request a B1G free trial where available, test the setup on your normal internet connection, and then select the B1G IPTV subscription duration that suits you.
             </p>
           </FadeIn>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">

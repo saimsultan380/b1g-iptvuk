@@ -9,16 +9,15 @@ export function InstHero() {
   return (
     <PageHero
       titleParts={[
-        { text: "B1G Player Installation Guide for" },
-        { text: "All Supported Devices", className: "text-brand-gradient font-bold" },
+        { text: "B1G Player Setup Guide for" },
+        { text: "Firestick, Smart TV and Mobile", className: "text-brand-gradient font-bold" },
       ]}
       paragraphs={[
-        "Install B1G Player directly on compatible Fire TV and Android devices, or add your B1G IPTV account to a compatible third-party player on Samsung, LG, Apple, Windows and Mac devices.",
-        "Follow only the method written for your device. Do not attempt to install an Android APK on Samsung Tizen, LG webOS or Apple products.",
+        "Set up B1G Player on compatible Firestick and Android devices using the current Downloader route, then enter the username, password and server address supplied with your active account. Samsung, LG, Apple, Windows and Mac devices can use a compatible alternative player where supported.",
       ]}
       primaryCta={{
         href: ROUTES.subscription,
-        label: "View B1G IPTV Plans",
+        label: "Compare B1G Player Plans",
         icon: Download,
       }}
       secondaryCta={{

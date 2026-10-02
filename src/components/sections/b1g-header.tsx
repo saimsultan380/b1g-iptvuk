@@ -55,7 +55,7 @@ export function B1GHeader() {
       >
         
         {/* 1) LEFT: Logo image only (square ~64x64, object-contain) */}
-        <Link href="/" className="flex items-center shrink-0 group">
+        <Link href={ROUTES.home} className="flex items-center shrink-0 group">
           <div className="relative w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.02]">
             <Image
               src="/logo.PNG"

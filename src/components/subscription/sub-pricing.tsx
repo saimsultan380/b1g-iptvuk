@@ -9,32 +9,32 @@ import { buildPlanWhatsAppUrl } from "@/lib/seo";
 
 const plans = [
   {
-    name: "One Month — £10",
+    name: "1 Month — £10 total",
     price: "£10",
     shortName: "1 Month",
     description: "The shortest paid option for customers who prefer flexibility.",
-    cta: "Choose One Month",
+    cta: "Choose 1 Month",
   },
   {
-    name: "Three Months — £20",
+    name: "3 Months — £20 total",
     price: "£20",
     shortName: "3 Months",
-    description: "A shorter multi-month option with a lower effective cost.",
-    cta: "Choose Three Months",
+    description: "A shorter multi-month option with a lower total price.",
+    cta: "Choose 3 Months",
   },
   {
-    name: "Six Months — £30",
+    name: "6 Months — £30 total",
     price: "£30",
     shortName: "6 Months",
     description: "Suitable for regular customers who have already checked compatibility.",
-    cta: "Choose Six Months",
+    cta: "Choose 6 Months",
   },
   {
-    name: "Twelve Months Plus One Month Free — £45",
+    name: "12 Months + 1 Free — £45 total",
     price: "£45",
-    shortName: "Annual Plan",
-    description: "The lowest effective monthly cost, providing thirteen months of account access.",
-    cta: "Choose the Annual Plan",
+    shortName: "12 Months + 1 Free",
+    description: "The lowest total price, providing thirteen months of account access.",
+    cta: "Choose 12 Months + 1 Free",
     recommended: true,
   },
 ];

@@ -9,7 +9,7 @@ const categories = [
   {
     title: "Live television",
     icon: Tv,
-    body: "Browse available entertainment, news, lifestyle, documentary, family and international categories without switching between several separate players.",
+    body: "Browse available entertainment, news, lifestyle, documentary, family and international categories through one organised B1G Player interface without switching between several separate players.",
   },
   {
     title: "Sports categories",
@@ -24,7 +24,7 @@ const categories = [
   {
     title: "TV series",
     icon: MonitorPlay,
-    body: "Browse available series, seasons and recently added programmes. The exact titles and number of complete seasons vary over time.",
+    body: "Browse available series, seasons and recently added programmes. Exact titles and the number of complete seasons vary over time.",
   },
   {
     title: "News and documentaries",

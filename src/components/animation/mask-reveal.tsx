@@ -43,10 +43,11 @@ export function MaskReveal({
       <span className="flex w-full flex-col items-start">
         {resolvedLines.map((segments, index) => (
           <TelvisHeroTitleLine key={`${segments.map((s) => s.text).join("")}-${index}`} index={index} trigger={trigger}>
-            {segments.map((segment) => (
-              <span key={`${segment.text}-${segment.className ?? ""}`} className={segment.className}>
-                {segment.text}
-              </span>
+            {segments.map((segment, segmentIndex) => (
+              <React.Fragment key={`${segment.text}-${segment.className ?? ""}-${segmentIndex}`}>
+                {segmentIndex > 0 ? " " : null}
+                <span className={segment.className}>{segment.text}</span>
+              </React.Fragment>
             ))}
           </TelvisHeroTitleLine>
         ))}

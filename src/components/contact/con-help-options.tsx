@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/animation/fade-in";
 import { Button } from "@/components/ui/button";
 import { KeyRound, ShieldAlert, BadgeInfo, HelpCircle, ArrowRight, Settings } from "lucide-react";
-import { buildIntentWhatsAppUrl } from "@/lib/seo";
+import { buildIntentWhatsAppUrl, ROUTES } from "@/lib/seo";
 
 const trialChecks = [
   "Device compatibility",
@@ -153,12 +153,12 @@ export function ConHelpOptions() {
                 </ul>
               </div>
 
-              <Link href="/b1g-iptv-subscription/" className="w-full">
+              <Link href={ROUTES.subscription} className="w-full">
                 <Button
                   variant="outline"
                   className="w-full rounded-[12px] border-2 border-[#E01E26] bg-white text-[#12141F] py-3 text-xs sm:text-sm font-semibold hover:bg-red-50"
                 >
-                  <span>Compare B1G IPTV Subscription Plans</span>
+                  <span>Compare B1G Player Subscription Plans</span>
                   <ArrowRight className="ml-2 h-4 w-4 text-[#E01E26]" />
                 </Button>
               </Link>

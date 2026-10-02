@@ -34,7 +34,7 @@ export function WhatIsIncluded() {
         <FadeIn className="w-full max-w-4xl mb-10">
           <h2 className="text-h2 font-bold tracking-tight text-[#12141F]">
             What Is Included with{" "}
-            <span className="text-brand-gradient font-bold">B1G IPTV?</span>
+            <span className="text-brand-gradient font-bold">B1G IPTV Player?</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
             The current advertised wider catalogue includes:
@@ -74,7 +74,7 @@ export function WhatIsIncluded() {
                   </h3>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-relaxed">
-                  Customers receive a private username, password and server address, plus installation guidance and account support.
+                  Customers receive a private username, password and server address, together with installation guidance and account support. These details should be kept private and should not be posted publicly.
                 </p>
               </TelvisCard>
 

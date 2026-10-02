@@ -6,21 +6,24 @@ export const SITE_HOST = "b1giptvplayers.com";
 /** Canonical production origin — always non-www, no trailing slash on origin. */
 export const SITE_ORIGIN = `https://${SITE_HOST}`;
 
+/** Canonical homepage path (not `/`, which redirects here). */
+export const HOME_PATH = "/b1g-iptv-uk/";
+
 /** Prefix so WhatsApp messages always name the current site, never a retired domain. */
 export const WHATSAPP_FROM_SITE = `Hi, I came from ${SITE_HOST}.`;
 
 export const SITE_NAME = "B1G Player";
 
 export const SITE_TITLE =
-  "B1G Player – IPTV App & B1G IPTV Subscription UK";
+  "B1G Player: B1G IPTV App & B1G APK + B1G Player Subscription";
 
 export const SITE_DESCRIPTION =
-  "Install B1G Player on compatible Firestick and Android devices, compare B1G IPTV subscription plans from £10 and get clear UK setup support.";
+  "Install B1G Player on a compatible Firestick, Fire TV or Android device, choose a B1G IPTV Subscription from £10 and receive the private login details and setup guidance needed to get started.";
 
 /** Canonical route paths (always trailing slash except homepage `/`). */
 export const ROUTES = {
-  home: "/",
-  subscription: "/b1g-iptv-subscription-plans/",
+  home: HOME_PATH,
+  subscription: "/b1g-player-subscription-plans/",
   installation: "/b1g-player-installation-guide/",
   devices: "/b1g-player-supported-devices/",
   reviews: "/b1g-player-reviews/",
@@ -35,9 +38,11 @@ export const ROUTES = {
 
 export const LEGAL_UPDATED = "18 August 2026";
 
-export const SUPPORT_WHATSAPP_DISPLAY = "+44 7848 177296";
 export const TRADING_NAME = "B1G IPTV Players";
+export const LEGAL_OPERATOR_NAME = TRADING_NAME;
+export const OPERATING_COUNTRY = "United Kingdom";
 
+export const SUPPORT_WHATSAPP_DISPLAY = "+44 7848 177296";
 /** Official support WhatsApp (E.164 without + for wa.me links). */
 export const WHATSAPP_NUMBER_E164 = "447848177296";
 export const WHATSAPP_NUMBER_DISPLAY = "+44 7848 177296";
@@ -171,6 +176,8 @@ type PageSeoInput = {
   path: string;
   /** When true, skip the root title template (title already includes brand). */
   absoluteTitle?: boolean;
+  /** When false, emit noindex, follow. Defaults to true. */
+  index?: boolean;
 };
 
 export function buildPageMetadata({
@@ -178,6 +185,7 @@ export function buildPageMetadata({
   description,
   path,
   absoluteTitle = true,
+  index = true,
 }: PageSeoInput): Metadata {
   const pathname = canonicalPath(path);
 
@@ -210,8 +218,126 @@ export function buildPageMetadata({
       images: ["/og-image.png"],
     },
     robots: {
-      index: true,
+      index,
       follow: true,
+    },
+  };
+}
+
+export const SUBSCRIPTION_PLANS = [
+  { name: "1 Month", price: "10", displayPrice: "£10" },
+  { name: "3 Months", price: "20", displayPrice: "£20" },
+  { name: "6 Months", price: "30", displayPrice: "£30" },
+  { name: "12 Months + 1 Free", price: "45", displayPrice: "£45" },
+] as const;
+
+export function buildOrganizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: TRADING_NAME,
+    url: absoluteUrl(HOME_PATH),
+    logo: absoluteUrl("/icons/icon-512.png"),
+    image: absoluteUrl("/og-image.png"),
+    description: SITE_DESCRIPTION,
+    brand: {
+      "@type": "Brand",
+      name: SITE_NAME,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: WHATSAPP_NUMBER_DISPLAY,
+      contactType: "customer support",
+      areaServed: "GB",
+      availableLanguage: "English",
+    },
+  };
+}
+
+export function buildWebsiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: TRADING_NAME,
+    url: absoluteUrl(HOME_PATH),
+    description: SITE_DESCRIPTION,
+    publisher: {
+      "@type": "Organization",
+      name: TRADING_NAME,
+      url: absoluteUrl(HOME_PATH),
+    },
+  };
+}
+
+export function buildHomeServiceJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "B1G Player IPTV Subscription",
+    description: SITE_DESCRIPTION,
+    url: absoluteUrl(HOME_PATH),
+    provider: {
+      "@type": "Organization",
+      name: TRADING_NAME,
+      url: absoluteUrl(HOME_PATH),
+    },
+    brand: {
+      "@type": "Brand",
+      name: SITE_NAME,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: OPERATING_COUNTRY,
+    },
+  };
+}
+
+export function buildSubscriptionOfferCatalogJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "B1G Player Subscription Plans",
+    url: absoluteUrl(ROUTES.subscription),
+    itemListElement: SUBSCRIPTION_PLANS.map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      price: plan.price,
+      priceCurrency: "GBP",
+      url: absoluteUrl(ROUTES.subscription),
+      seller: {
+        "@type": "Organization",
+        name: TRADING_NAME,
+      },
+    })),
+  };
+}
+
+export function buildSubscriptionServiceJsonLd(title: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "B1G Player Subscription",
+    description,
+    url: absoluteUrl(ROUTES.subscription),
+    provider: {
+      "@type": "Organization",
+      name: TRADING_NAME,
+      url: absoluteUrl(HOME_PATH),
+    },
+    brand: {
+      "@type": "Brand",
+      name: SITE_NAME,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: OPERATING_COUNTRY,
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "GBP",
+      lowPrice: "10",
+      highPrice: "45",
+      offerCount: SUBSCRIPTION_PLANS.length,
     },
   };
 }
@@ -224,15 +350,17 @@ export const SITE_PAGES = [
     description: SITE_DESCRIPTION,
     changeFrequency: "weekly" as const,
     priority: 1,
+    includeInSitemap: true,
     breadcrumbs: [{ name: "Home", path: ROUTES.home }],
   },
   {
     path: ROUTES.subscription,
-    title: "B1G IPTV Subscription UK – Plans, Prices & Trial",
+    title: "B1G Player Subscription UK – Plans, Prices & Trial",
     description:
-      "Compare B1G IPTV Subscription plans for 1, 3, 6 or 12 months, see what is included and request a device trial before ordering.",
+      "Compare B1G Player subscription prices for 1, 3, 6 and 12 months, see what each plan includes and request a UK device trial before ordering.",
     changeFrequency: "weekly" as const,
     priority: 0.9,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Subscription Plans", path: ROUTES.subscription },
@@ -240,11 +368,12 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.installation,
-    title: "B1G Player Installation Guide – Firestick, TV & Mobile",
+    title: "B1G Player Setup Guide – Firestick, Smart TV & Mobile",
     description:
-      "Install B1G Player on Firestick or Android and set up B1G IPTV on Samsung, LG, Apple, Windows and Mac devices.",
+      "Set up B1G Player on Firestick and Android, or connect a B1G IPTV account through compatible Smart TV, Apple, Windows and mobile players.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Installation Guide", path: ROUTES.installation },
@@ -252,11 +381,12 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.devices,
-    title: "B1G Player Supported Devices – TV, Firestick & Mobile",
+    title: "B1G Player Supported Devices – Firestick, TV, Mobile & PC",
     description:
-      "Check B1G Player compatibility with Firestick, Android TV, Smart TVs, Apple devices, Windows, Mac and other supported platforms.",
+      "Check B1G Player compatibility with Firestick, Android TV, Smart TVs, Apple devices, Windows and Mac, including alternative player options.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Supported Devices", path: ROUTES.devices },
@@ -269,6 +399,7 @@ export const SITE_PAGES = [
       "Read genuine B1G Player and B1G IPTV customer feedback, learn how reviews are checked and share an honest experience.",
     changeFrequency: "monthly" as const,
     priority: 0.6,
+    includeInSitemap: false,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Reviews", path: ROUTES.reviews },
@@ -276,11 +407,12 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.reseller,
-    title: "B1G IPTV Reseller Panel UK – Credits, Plans & Support",
+    title: "B1G Player Reseller Panel UK – Credits & Wholesale Plans",
     description:
-      "Learn how the B1G IPTV Reseller Panel works, understand credits, reseller responsibilities, support and the application process.",
+      "Compare B1G Player reseller credit options, panel functions, customer-account tools and application requirements for UK resellers.",
     changeFrequency: "monthly" as const,
     priority: 0.8,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Reseller Panel", path: ROUTES.reseller },
@@ -288,11 +420,12 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.contact,
-    title: "B1G IPTV Free Trial – Contact B1G Player Support UK",
+    title: "B1G Player Free Trial UK – Contact Subscription Support",
     description:
-      "Request a B1G IPTV free trial or contact B1G Player about plans, devices, installation, login, renewal, refunds or reseller access.",
+      "Request a B1G Player trial or ask about subscription plans, compatible devices, setup, activation, renewals, refunds or reseller access.",
     changeFrequency: "monthly" as const,
     priority: 0.7,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Contact Us", path: ROUTES.contact },
@@ -300,11 +433,12 @@ export const SITE_PAGES = [
   },
   {
     path: ROUTES.about,
-    title: "About B1G IPTV Players – App, Setup & UK Support",
+    title: "About B1G IPTV Players – B1G Player App & UK Support",
     description:
-      "Learn how B1G IPTV Players explains subscriptions, B1G Player installation, supported devices and account support for UK customers.",
+      "Learn how B1G IPTV Players provides B1G Player subscription information, device guidance, installation instructions and account support for UK customers.",
     changeFrequency: "monthly" as const,
     priority: 0.6,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "About Us", path: ROUTES.about },
@@ -317,6 +451,7 @@ export const SITE_PAGES = [
       "Read the terms covering B1G IPTV subscriptions, trials, payments, account use, connections, support, cancellation and service changes.",
     changeFrequency: "yearly" as const,
     priority: 0.3,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Terms and Conditions", path: ROUTES.terms },
@@ -329,6 +464,7 @@ export const SITE_PAGES = [
       "Learn what information B1G IPTV Players collects, why it is used, who receives it, how long it is kept and your UK privacy rights.",
     changeFrequency: "yearly" as const,
     priority: 0.3,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Privacy Policy", path: ROUTES.privacy },
@@ -341,6 +477,7 @@ export const SITE_PAGES = [
       "Read how to request cancellation or a refund for B1G IPTV orders, including activation, service faults, compatibility and duplicate payments.",
     changeFrequency: "yearly" as const,
     priority: 0.3,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "Refund Policy", path: ROUTES.refund },
@@ -353,6 +490,7 @@ export const SITE_PAGES = [
       "Report allegedly infringing website material or service access and provide the details needed for a B1G IPTV copyright review.",
     changeFrequency: "yearly" as const,
     priority: 0.3,
+    includeInSitemap: true,
     breadcrumbs: [
       { name: "Home", path: ROUTES.home },
       { name: "DMCA Policy", path: ROUTES.dmca },

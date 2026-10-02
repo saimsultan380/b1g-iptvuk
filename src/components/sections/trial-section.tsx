@@ -34,12 +34,12 @@ export function TrialSection() {
             <span className="text-brand-gradient font-bold">Longer Plan</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
-            A trial helps confirm whether the application, device and internet connection work together.
+            A trial helps confirm whether the application, device, and internet connection work together.
           </p>
         </FadeIn>
 
         <div className="rounded-[12px] border border-slate-200 bg-white p-6 sm:p-8">
-            <FadeIn>
+          <FadeIn>
             <div className="flex items-center gap-2.5 mb-6">
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-50 text-[#E01E26] shrink-0">
                 <FlaskConical className="h-4 w-4 stroke-[2]" />
@@ -58,26 +58,23 @@ export function TrialSection() {
                 </li>
               ))}
             </ul>
-            </FadeIn>
-            <div className="border-t border-slate-100 pt-5 space-y-3">
-              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
-                Trial availability, duration and any catalogue restrictions are confirmed before activation.
-              </p>
-              <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
-                A successful trial confirms compatibility during the test period. It does not guarantee that every catalogue item will remain unchanged.
-              </p>
-              <Link href={ROUTES.contact} className="inline-flex">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold"
-                >
-                  <span>Request a B1G IPTV Trial</span>
-                  <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
-                </Button>
-              </Link>
-            </div>
+          </FadeIn>
+          <div className="border-t border-slate-100 pt-5 space-y-3">
+            <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed">
+              Confirm trial availability, duration, and any catalogue restrictions before activation.
+            </p>
+            <Link href={ROUTES.contact} className="inline-flex">
+              <Button
+                variant="primary"
+                size="lg"
+                className="rounded-[12px] bg-gradient-to-r from-[#E01E26] via-[#EE2830] to-[#B5121A] text-white px-5 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold"
+              >
+                <span>Request B1G Free Trial</span>
+                <ArrowRight className="ml-2 h-4 w-4 stroke-[2.5]" />
+              </Button>
+            </Link>
           </div>
+        </div>
       </div>
     </section>
   );

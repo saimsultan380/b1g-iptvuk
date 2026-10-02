@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const CANONICAL_ORIGIN = "https://b1giptvplayers.com";
+const SUBSCRIPTION_PLANS = "/b1g-player-subscription-plans/";
+const HOME = "/b1g-iptv-uk/";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -14,20 +16,20 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Root → new canonical homepage
+      // Root → canonical homepage
       {
         source: "/",
-        destination: "/b1g-iptv-uk/",
+        destination: HOME,
         permanent: true,
       },
       {
         source: "/b1g-iptv-subscription",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/b1g-iptv-subscription/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
@@ -52,12 +54,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/subscription-plan",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/subscription-plan/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
@@ -92,30 +94,28 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/compare-plans",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/compare-plans/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
 
       // ── WordPress Migration Redirects ──────────────────────────────────
 
-      // /our-plans → /b1g-iptv-subscription-plans
       {
         source: "/our-plans",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/our-plans/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
 
-      // /reviews-what-our-customers-say → /b1g-player-reviews
       {
         source: "/reviews-what-our-customers-say",
         destination: "/b1g-player-reviews/",
@@ -127,7 +127,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /iptv-reseller-panel-2026 → /b1g-iptv-reseller-panel
       {
         source: "/iptv-reseller-panel-2026",
         destination: "/b1g-iptv-reseller-panel/",
@@ -139,7 +138,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /troubleshooting-fix-b1g-iptv-issues → /b1g-player-installation-guide
       {
         source: "/troubleshooting-fix-b1g-iptv-issues",
         destination: "/b1g-player-installation-guide/",
@@ -151,19 +149,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /subscription-plans → /b1g-iptv-subscription-plans
       {
         source: "/subscription-plans",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/subscription-plans/",
-        destination: "/b1g-iptv-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
 
-      // /iptv-reviews → /b1g-player-reviews
       {
         source: "/iptv-reviews",
         destination: "/b1g-player-reviews/",
@@ -175,19 +171,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /b1g-iptv → / (homepage)
       {
         source: "/b1g-iptv",
-        destination: "/",
+        destination: HOME,
         permanent: true,
       },
       {
         source: "/b1g-iptv/",
-        destination: "/",
+        destination: HOME,
         permanent: true,
       },
 
-      // /reseller-panel → /iptv-reseller-panel
       {
         source: "/iptv-reseller-panel",
         destination: "/b1g-iptv-reseller-panel/",
@@ -199,22 +193,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /b1g-iptv (old WP slug) → new canonical homepage
-      // Note: /b1g-iptv-uk is now a real page — no redirect needed
-
-      // /buy-now → /b1g-player-subscription-plans (WP indexed page)
       {
         source: "/buy-now",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/buy-now/",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
 
-      // /b1g-iptv-reviews → /b1g-player-reviews
       {
         source: "/b1g-iptv-reviews",
         destination: "/b1g-player-reviews/",
@@ -226,27 +215,36 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // /b1g-iptv-subscription-plans → /b1g-player-subscription-plans (new canonical)
       {
         source: "/b1g-iptv-subscription-plans",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/b1g-iptv-subscription-plans/",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
 
-      // /b1g-iptv-subscription-plans-uk → /b1g-player-subscription-plans (WP final indexed URL)
       {
         source: "/b1g-iptv-subscription-plans-uk",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
       {
         source: "/b1g-iptv-subscription-plans-uk/",
-        destination: "/b1g-player-subscription-plans/",
+        destination: SUBSCRIPTION_PLANS,
+        permanent: true,
+      },
+
+      {
+        source: "/b1g-player-iptv-subscription-guide-for-uk-2026",
+        destination: SUBSCRIPTION_PLANS,
+        permanent: true,
+      },
+      {
+        source: "/b1g-player-iptv-subscription-guide-for-uk-2026/",
+        destination: SUBSCRIPTION_PLANS,
         permanent: true,
       },
     ];

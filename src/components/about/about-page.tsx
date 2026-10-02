@@ -5,7 +5,12 @@ import { PageHero } from "@/components/layout/page-hero";
 import { FadeIn } from "@/components/animation/fade-in";
 import { PageCta } from "@/components/layout/page-cta";
 import { MessageCircle, Calendar, ShieldCheck, Eye, FlaskConical } from "lucide-react";
-import { ROUTES } from "@/lib/seo";
+import {
+  LEGAL_OPERATOR_NAME,
+  OPERATING_COUNTRY,
+  ROUTES,
+  WHATSAPP_NUMBER_DISPLAY,
+} from "@/lib/seo";
 
 export function AboutHero() {
   return (
@@ -150,10 +155,10 @@ export function AboutBody() {
           <FadeIn className="w-full">
             <div className="rounded-[12px] border border-slate-200 bg-white p-6 sm:p-8 space-y-3">
               <p className="text-sm text-[#4A4A4A] leading-relaxed">
-                B1G IPTV Players is the trading name used on this website for B1G Player app information, B1G IPTV subscription plans and UK customer support.
+                {LEGAL_OPERATOR_NAME} operates this website from the {OPERATING_COUNTRY}. The trading name B1G IPTV Players is used for B1G Player app information, subscription plans and UK customer support.
               </p>
               <p className="text-sm text-[#4A4A4A] leading-relaxed">
-                Contact, privacy, refund and copyright requests should be sent through the Contact page or WhatsApp support channel listed there.
+                Business contact: WhatsApp {WHATSAPP_NUMBER_DISPLAY} (see the Contact page for support hours). Privacy, refund and copyright requests should be sent through the Contact page or the WhatsApp support channel listed there.
               </p>
             </div>
           </FadeIn>
